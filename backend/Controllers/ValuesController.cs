@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using UserServiceReference;
 
 namespace backend.Controllers
 {
@@ -13,14 +12,11 @@ namespace backend.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        Service1Client sc = new Service1Client();
-
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            UserDetails user = sc.LoginUserAsync("test", "test").Result;
-            return new string[] { ""+user.created_at, user.username+"" }; 
+            return new string[] {"value1", "value2"}; 
         }
 
         // GET api/values/5
@@ -32,10 +28,8 @@ namespace backend.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult<IEnumerable<string>> Post(string username, string password)
+        public void Post([FromBody] string value)
         {
-            UserDetails user = sc.LoginUserAsync("test", "test").Result;
-            return new string[] { "" + user.created_at, user.username + "" };
         }
 
         // PUT api/values/5
