@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\thoma\\Documents\\GitHub\\Energy-Equals-Coffee-Squared\\backend\\backend\\backend.csproj",
+    "projectUniqueName": "C:\\Users\\thoma\\Documents\\GitHub\\backend\\backend\\backend.csproj",
     "projectName": "backend",
-    "projectPath": "C:\\Users\\thoma\\Documents\\GitHub\\Energy-Equals-Coffee-Squared\\backend\\backend\\backend.csproj",
-    "outputPath": "C:\\Users\\thoma\\Documents\\GitHub\\Energy-Equals-Coffee-Squared\\backend\\backend\\obj\\",
+    "projectPath": "C:\\Users\\thoma\\Documents\\GitHub\\backend\\backend\\backend.csproj",
+    "outputPath": "C:\\Users\\thoma\\Documents\\GitHub\\backend\\backend\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -50,6 +50,26 @@
           "target": "Package",
           "version": "[2.2.0, )",
           "autoReferenced": true
+        },
+        "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+          "target": "Package",
+          "version": "[2.2.3, )"
+        },
+        "System.ServiceModel.Duplex": {
+          "target": "Package",
+          "version": "[4.4.*, )"
+        },
+        "System.ServiceModel.Http": {
+          "target": "Package",
+          "version": "[4.4.*, )"
+        },
+        "System.ServiceModel.NetTcp": {
+          "target": "Package",
+          "version": "[4.4.*, )"
+        },
+        "System.ServiceModel.Security": {
+          "target": "Package",
+          "version": "[4.4.*, )"
         }
       },
       "imports": [

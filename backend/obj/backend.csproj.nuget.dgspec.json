@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thoma\\Documents\\GitHub\\Energy-Equals-Coffee-Squared\\backend\\backend\\backend.csproj": {}
+    "C:\\Users\\thoma\\Documents\\GitHub\\backend\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thoma\\Documents\\GitHub\\Energy-Equals-Coffee-Squared\\backend\\backend\\backend.csproj": {
+    "C:\\Users\\thoma\\Documents\\GitHub\\backend\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thoma\\Documents\\GitHub\\Energy-Equals-Coffee-Squared\\backend\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\thoma\\Documents\\GitHub\\backend\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\thoma\\Documents\\GitHub\\Energy-Equals-Coffee-Squared\\backend\\backend\\backend.csproj",
+        "projectPath": "C:\\Users\\thoma\\Documents\\GitHub\\backend\\backend\\backend.csproj",
         "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thoma\\Documents\\GitHub\\Energy-Equals-Coffee-Squared\\backend\\backend\\obj\\",
+        "outputPath": "C:\\Users\\thoma\\Documents\\GitHub\\backend\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -29,7 +29,11 @@
         },
         "frameworks": {
           "netcoreapp2.2": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\thoma\\Documents\\GitHub\\backend\\UserService\\UserService.csproj": {
+                "projectPath": "C:\\Users\\thoma\\Documents\\GitHub\\backend\\UserService\\UserService.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -61,6 +65,22 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "System.ServiceModel.Duplex": {
+              "target": "Package",
+              "version": "[4.4.*, )"
+            },
+            "System.ServiceModel.Http": {
+              "target": "Package",
+              "version": "[4.4.*, )"
+            },
+            "System.ServiceModel.NetTcp": {
+              "target": "Package",
+              "version": "[4.4.*, )"
+            },
+            "System.ServiceModel.Security": {
+              "target": "Package",
+              "version": "[4.4.*, )"
             }
           },
           "imports": [
@@ -69,6 +89,17 @@
           "assetTargetFallback": true,
           "warn": true
         }
+      }
+    },
+    "C:\\Users\\thoma\\Documents\\GitHub\\backend\\UserService\\UserService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\thoma\\Documents\\GitHub\\backend\\UserService\\UserService.csproj",
+        "projectName": "UserService",
+        "projectPath": "C:\\Users\\thoma\\Documents\\GitHub\\backend\\UserService\\UserService.csproj"
+      },
+      "frameworks": {
+        "net461": {}
       }
     }
   }
