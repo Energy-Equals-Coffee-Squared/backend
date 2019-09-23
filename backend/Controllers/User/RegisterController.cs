@@ -20,6 +20,14 @@ namespace backend.Controllers
             string first_name, string last_name, string contact_number)
         {
             bool register = sc.RegisterUserAsync(username, email, password, rptPassword, first_name, last_name, contact_number).Result;
+            if (register)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }

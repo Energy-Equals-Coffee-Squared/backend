@@ -23,11 +23,18 @@ namespace backend.Controllers
         //}
 
         [HttpPost]
-        public int get(string thisdd, string theer)
+        public string[] get(string username, string password)
         {
-            UserDetails user = sc.LoginUserAsync("qwe", "qweqwe").Result;
-            Response.Headers.Add("X-error", "error oh no");
-            return 12;
+            UserDetails user = sc.LoginUserAsync(username, password).Result;
+
+            if(user == null)
+            {
+                return new string[] { };
+            }
+            else
+            {
+                return new string[] {user.first_name, user.last_name, user.id+""};
+            }
         }
     }
 }
