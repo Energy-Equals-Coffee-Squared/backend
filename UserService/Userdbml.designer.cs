@@ -22,7 +22,7 @@ namespace UserService
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="dbcoffee")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="CoffeeSquaredDB")]
 	public partial class UserdbmlDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,7 +36,7 @@ namespace UserService
     #endregion
 		
 		public UserdbmlDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["dbcoffeeConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CoffeeSquaredDBConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -74,7 +74,7 @@ namespace UserService
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
 	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -98,11 +98,11 @@ namespace UserService
 		
 		private System.DateTime _updated_at;
 		
-		private byte _isActive;
+		private int _isActive;
 		
-		private byte _isAdmin;
+		private int _isAdmin;
 		
-		private byte _isDeleted;
+		private int _isDeleted;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -126,11 +126,11 @@ namespace UserService
     partial void Oncreated_atChanged();
     partial void Onupdated_atChanging(System.DateTime value);
     partial void Onupdated_atChanged();
-    partial void OnisActiveChanging(byte value);
+    partial void OnisActiveChanging(int value);
     partial void OnisActiveChanged();
-    partial void OnisAdminChanging(byte value);
+    partial void OnisAdminChanging(int value);
     partial void OnisAdminChanged();
-    partial void OnisDeletedChanging(byte value);
+    partial void OnisDeletedChanging(int value);
     partial void OnisDeletedChanged();
     #endregion
 		
@@ -159,7 +159,7 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string username
 		{
 			get
@@ -179,7 +179,7 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string email
 		{
 			get
@@ -199,7 +199,7 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_first_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_first_name", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string first_name
 		{
 			get
@@ -219,7 +219,7 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_name", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string last_name
 		{
 			get
@@ -239,7 +239,7 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string password
 		{
 			get
@@ -259,7 +259,7 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact_number", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contact_number", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string contact_number
 		{
 			get
@@ -279,7 +279,7 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_at", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_at", DbType="Date NOT NULL")]
 		public System.DateTime created_at
 		{
 			get
@@ -299,7 +299,7 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_at", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated_at", DbType="Date NOT NULL")]
 		public System.DateTime updated_at
 		{
 			get
@@ -319,8 +319,8 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="TinyInt NOT NULL")]
-		public byte isActive
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Int NOT NULL")]
+		public int isActive
 		{
 			get
 			{
@@ -339,8 +339,8 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isAdmin", DbType="TinyInt NOT NULL")]
-		public byte isAdmin
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isAdmin", DbType="Int NOT NULL")]
+		public int isAdmin
 		{
 			get
 			{
@@ -359,8 +359,8 @@ namespace UserService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isDeleted", DbType="TinyInt NOT NULL")]
-		public byte isDeleted
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isDeleted", DbType="Int NOT NULL")]
+		public int isDeleted
 		{
 			get
 			{
