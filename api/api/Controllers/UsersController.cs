@@ -13,25 +13,25 @@ namespace api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly CoffeeContext _context;
+        private readonly CoffeeContext db;
 
         public UsersController(CoffeeContext context)
         {
-            _context = context;
+            db = context;
         }
 
         // GET: api/Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await db.Users.ToListAsync();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Users>> GetUsers(int id)
         {
-            var users = await _context.Users.FindAsync(id);
+            var users = await db.Users.FindAsync(id);
 
             if (users == null)
             {
@@ -50,11 +50,11 @@ namespace api.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(users).State = EntityState.Modified;
+            db.Entry(users).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -75,8 +75,8 @@ namespace api.Controllers
         [HttpPost]
         public async Task<ActionResult<Users>> PostUsers(Users users)
         {
-            _context.Users.Add(users);
-            await _context.SaveChangesAsync();
+            db.Users.Add(users);
+            await db.SaveChangesAsync();
 
             return CreatedAtAction("GetUsers", new { id = users.Id }, users);
         }
@@ -85,21 +85,21 @@ namespace api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Users>> DeleteUsers(int id)
         {
-            var users = await _context.Users.FindAsync(id);
+            var users = await db.Users.FindAsync(id);
             if (users == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(users);
-            await _context.SaveChangesAsync();
+            db.Users.Remove(users);
+            await db.SaveChangesAsync();
 
             return users;
         }
 
         private bool UsersExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return db.Users.Any(e => e.Id == id);
         }
     }
 }
