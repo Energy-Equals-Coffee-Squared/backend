@@ -23,7 +23,7 @@ namespace api.Controllers.UserFunctions
 
         // POST: api/Users/Register
         [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers(
+        public async Task<ActionResult<UsersDTO>> RegisterUser(
             string inUsername, string inEmail, 
             string inFirst_name, string inLast_name, 
             string inPassword, string inContact_number
@@ -40,13 +40,26 @@ namespace api.Controllers.UserFunctions
                 created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 isActive = true,
-                isDelted = true,
+                isDelted = false,
                 isAdmin = false
             };
             db.Users.Add(users);
             await db.SaveChangesAsync();
-            var otuput = JsonConvert.SerializeObject(users);
-            return otuput;
+
+            UsersDTO userDTO = new UsersDTO
+            {
+                Id = users.Id,
+                username = users.username,
+                email = users.email,
+                first_name = users.first_name,
+                last_name = users.last_name,
+                contact_number = users.contact_number,
+                created_at = users.created_at,
+                updated_at = users.updated_at,
+                isAdmin = users.isAdmin
+            };
+
+            return userDTO;
         }
     }
 }

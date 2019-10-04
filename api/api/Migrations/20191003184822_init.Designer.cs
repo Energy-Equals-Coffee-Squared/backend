@@ -10,8 +10,8 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(CoffeeContext))]
-    [Migration("20190925182019_Init")]
-    partial class Init
+    [Migration("20191003184822_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,43 @@ namespace api.Migrations
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("api.Models.ProductOptions", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("created_at")
+                        .HasColumnType("datetime");
+
+                    b.Property<byte>("isAvailable")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("isDeleted")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int>("price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("product_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("updated_at")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("weight")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("product_id");
+
+                    b.ToTable("ProductOptions");
+                });
 
             modelBuilder.Entity("api.Models.Products", b =>
                 {
@@ -50,7 +87,7 @@ namespace api.Migrations
                         .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)))
                         .HasColumnType("varchar(255)");
 
-                    b.Property<byte>("isDelted")
+                    b.Property<byte>("isDeleted")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("name")
@@ -121,6 +158,14 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("api.Models.ProductOptions", b =>
+                {
+                    b.HasOne("api.Models.Products", "Prodcut")
+                        .WithMany()
+                        .HasForeignKey("product_id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

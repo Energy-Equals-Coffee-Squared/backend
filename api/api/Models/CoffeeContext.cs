@@ -16,5 +16,8 @@ namespace api.Models
         public DbSet<Users> Users { get; set; }
 
         public DbSet<Products> Products { get; set; }
+
+        public DbSet<ProductOptions> ProductOptions { get; set; }
+
     }
 }

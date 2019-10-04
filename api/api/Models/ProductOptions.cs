@@ -8,34 +8,19 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class Products
+    public class ProductOptions
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        [Column(TypeName = "varchar(255)")]
-        public string name { get; set; }
-        [Required]
-        [Column(TypeName = "varchar(255)")]
-        public string desc { get; set; }
-        [Required]
-        [Column(TypeName = "varchar(255)")]
-        public string region { get; set; }
-        [Required]
-        [Column(TypeName = "varchar(255)")]
-        public string roast { get; set; }
+        [Column(TypeName = "int")]
+        public int price { get; set; }
         [Required]
         [Column(TypeName = "int")]
-        public int altitude_max { get; set; }
+        public int weight { get; set; }
         [Required]
         [Column(TypeName = "int")]
-        public int altitude_min { get; set; }
-        [Required]
-        [Column(TypeName = "varchar(255)")]
-        public bool bean_type { get; set; }
-        [Required]
-        [Column(TypeName = "varchar(255)")]
-        public bool image_url { get; set; }
+        public int quantity { get; set; }
         [Required]
         [Column(TypeName = "datetime")]
         public DateTime created_at { get; set; }
@@ -43,8 +28,16 @@ namespace api.Models
         [Column(TypeName = "datetime")]
         public DateTime updated_at { get; set; }
         [Required]
+        [ForeignKey("Prodcut")]
+        [Column(TypeName = "int")]
+        public int product_id { get; set; }
+
+        public Products Prodcut { get; set; }
+        [Required]
+        [Column(TypeName = "tinyint")]
+        public bool isAvailable { get; set; }
+        [Required]
         [Column(TypeName = "tinyint")]
         public bool isDeleted { get; set; }
-        
     }
 }
