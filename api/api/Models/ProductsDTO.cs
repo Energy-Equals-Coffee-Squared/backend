@@ -14,10 +14,10 @@ namespace api.Models
         public string roast { get; set; }
         public int altitude_max { get; set; }
         public int altitude_min { get; set; }
-        public bool bean_type { get; set; }
-        public bool image_url { get; set; }
+        public string bean_type { get; set; }
+        public string image_url { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
-        public bool isDeleted { get; set; }
+        public List<ProductOptionsDTO> productOptions { get; set; }
     }
 }

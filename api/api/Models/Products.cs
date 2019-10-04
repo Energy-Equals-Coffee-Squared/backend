@@ -32,10 +32,10 @@ namespace api.Models
         public int altitude_min { get; set; }
         [Required]
         [Column(TypeName = "varchar(255)")]
-        public bool bean_type { get; set; }
+        public string bean_type { get; set; }
         [Required]
         [Column(TypeName = "varchar(255)")]
-        public bool image_url { get; set; }
+        public string image_url { get; set; }
         [Required]
         [Column(TypeName = "datetime")]
         public DateTime created_at { get; set; }

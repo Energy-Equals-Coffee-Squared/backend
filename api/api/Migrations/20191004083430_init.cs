@@ -66,6 +66,7 @@ namespace api.Migrations
                     created_at = table.Column<DateTime>(type: "datetime", nullable: false),
                     updated_at = table.Column<DateTime>(type: "datetime", nullable: false),
                     product_id = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(nullable: true),
                     isAvailable = table.Column<byte>(type: "tinyint", nullable: false),
                     isDeleted = table.Column<byte>(type: "tinyint", nullable: false)
                 },
@@ -73,17 +74,17 @@ namespace api.Migrations
                 {
                     table.PrimaryKey("PK_ProductOptions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductOptions_Products_product_id",
-                        column: x => x.product_id,
+                        name: "FK_ProductOptions_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductOptions_product_id",
+                name: "IX_ProductOptions_ProductId",
                 table: "ProductOptions",
-                column: "product_id");
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

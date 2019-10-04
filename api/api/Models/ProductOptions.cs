@@ -32,7 +32,7 @@ namespace api.Models
         [Column(TypeName = "int")]
         public int product_id { get; set; }
 
-        public Products Prodcut { get; set; }
+        public Products Product { get; set; }
         [Required]
         [Column(TypeName = "tinyint")]
         public bool isAvailable { get; set; }

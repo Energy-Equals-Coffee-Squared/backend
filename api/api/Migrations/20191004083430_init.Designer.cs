@@ -10,7 +10,7 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(CoffeeContext))]
-    [Migration("20191003184822_init")]
+    [Migration("20191004083430_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,6 +26,8 @@ namespace api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ProductId");
 
                     b.Property<DateTime>("created_at")
                         .HasColumnType("datetime");
@@ -53,7 +55,7 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("product_id");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductOptions");
                 });
@@ -72,7 +74,6 @@ namespace api.Migrations
 
                     b.Property<string>("bean_type")
                         .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)))
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("created_at")
@@ -84,7 +85,6 @@ namespace api.Migrations
 
                     b.Property<string>("image_url")
                         .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)))
                         .HasColumnType("varchar(255)");
 
                     b.Property<byte>("isDeleted")
@@ -162,10 +162,9 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.ProductOptions", b =>
                 {
-                    b.HasOne("api.Models.Products", "Prodcut")
+                    b.HasOne("api.Models.Products", "Product")
                         .WithMany()
-                        .HasForeignKey("product_id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

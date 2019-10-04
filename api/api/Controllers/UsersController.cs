@@ -41,60 +41,115 @@ namespace api.Controllers
             return users;
         }
 
-        // PUT: api/Users/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsers(int id, Users users)
+        // POST: api/Users/Login
+        [Route("Login")]
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<UsersDTO>>> LoginUser(string username, string password)
         {
-            if (id != users.Id)
-            {
-                return BadRequest();
-            }
 
-            db.Entry(users).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UsersExists(id))
+            var users = await db.Users.Where(
+                u => u.username.Equals(username)
+                && u.password.Equals(password)
+                && u.isActive.Equals(true)
+                && u.isDelted.Equals(false)
+            ).Select(
+                u => new UsersDTO()
                 {
-                    return NotFound();
+                    Id = u.Id,
+                    username = u.username,
+                    email = u.email,
+                    first_name = u.first_name,
+                    last_name = u.last_name,
+                    contact_number = u.contact_number,
+                    created_at = u.created_at,
+                    updated_at = u.updated_at,
+                    isAdmin = u.isAdmin
                 }
-                else
-                {
-                    throw;
-                }
+            ).ToListAsync();
+
+            if (users.Count == 0)
+            {
+                return NotFound();
             }
 
-            return NoContent();
+            return users;
         }
 
-        // POST: api/Users
+        // POST: api/Users/Register
+        [Route("Register")]
         [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers(Users users)
+        public async Task<ActionResult<IEnumerable<UsersDTO>>> RegisterUser(
+            string inUsername, string inEmail,
+            string inFirst_name, string inLast_name,
+            string inPassword, string inContact_number
+            )
         {
+            Users users = new Users
+            {
+                username = inUsername,
+                email = inEmail,
+                first_name = inFirst_name,
+                last_name = inLast_name,
+                password = inPassword,
+                contact_number = inContact_number,
+                created_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                isActive = true,
+                isDelted = false,
+                isAdmin = false
+            };
             db.Users.Add(users);
             await db.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsers", new { id = users.Id }, users);
+            UsersDTO userDTO = new UsersDTO
+            {
+                Id = users.Id,
+                username = users.username,
+                email = users.email,
+                first_name = users.first_name,
+                last_name = users.last_name,
+                contact_number = users.contact_number,
+                created_at = users.created_at,
+                updated_at = users.updated_at,
+                isAdmin = users.isAdmin
+            };
+            List<UsersDTO> data = new List<UsersDTO>() { userDTO };
+            return data;
         }
 
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Users>> DeleteUsers(int id)
+        // POST: api/Users/Login
+        [Route("Delete")]
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<UsersDTO>>> DeleteUser(int id)
         {
+
             var users = await db.Users.FindAsync(id);
             if (users == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(users);
+            users.isDelted = true;
+
+            db.Users.Update(users);
             await db.SaveChangesAsync();
 
-            return users;
+            UsersDTO userDTO = new UsersDTO
+            {
+                Id = users.Id,
+                username = users.username,
+                email = users.email,
+                first_name = users.first_name,
+                last_name = users.last_name,
+                contact_number = users.contact_number,
+                created_at = users.created_at,
+                updated_at = users.updated_at,
+                isAdmin = users.isAdmin
+            };
+
+            List<UsersDTO> data = new List<UsersDTO>();
+            data.Add(userDTO);
+            return data;
         }
 
         private bool UsersExists(int id)
