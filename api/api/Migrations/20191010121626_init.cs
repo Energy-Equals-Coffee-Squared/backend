@@ -17,6 +17,8 @@ namespace api.Migrations
                     name = table.Column<string>(type: "varchar(255)", nullable: false),
                     desc = table.Column<string>(type: "varchar(255)", nullable: false),
                     region = table.Column<string>(type: "varchar(255)", nullable: false),
+                    max_price = table.Column<int>(type: "int", nullable: false),
+                    min_price = table.Column<int>(type: "int", nullable: false),
                     roast = table.Column<string>(type: "varchar(255)", nullable: false),
                     altitude_max = table.Column<int>(type: "int", nullable: false),
                     altitude_min = table.Column<int>(type: "int", nullable: false),
@@ -65,8 +67,7 @@ namespace api.Migrations
                     quantity = table.Column<int>(type: "int", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime", nullable: false),
                     updated_at = table.Column<DateTime>(type: "datetime", nullable: false),
-                    product_id = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(nullable: true),
+                    ProductID = table.Column<int>(type: "int", nullable: false),
                     isAvailable = table.Column<byte>(type: "tinyint", nullable: false),
                     isDeleted = table.Column<byte>(type: "tinyint", nullable: false)
                 },
@@ -74,17 +75,17 @@ namespace api.Migrations
                 {
                     table.PrimaryKey("PK_ProductOptions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductOptions_Products_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_ProductOptions_Products_ProductID",
+                        column: x => x.ProductID,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductOptions_ProductId",
+                name: "IX_ProductOptions_ProductID",
                 table: "ProductOptions",
-                column: "ProductId");
+                column: "ProductID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

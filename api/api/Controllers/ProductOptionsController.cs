@@ -75,7 +75,7 @@ namespace api.Controllers
         [HttpPost]
         public async Task<ActionResult<ProductOptions>> PostProductOptions(
             int inPrice, int inWeight,
-            int inQuantity, int inProduct_id
+            int inQuantity, int inProductID
         )
         {
             ProductOptions productOptions = new ProductOptions
@@ -83,7 +83,7 @@ namespace api.Controllers
                 price = inPrice,
                 weight = inWeight,
                 quantity = inQuantity,
-                product_id = inProduct_id
+                ProductID = inProductID
             };
             db.ProductOptions.Add(productOptions);
             await db.SaveChangesAsync();

@@ -22,6 +22,12 @@ namespace api.Models
         [Column(TypeName = "varchar(255)")]
         public string region { get; set; }
         [Required]
+        [Column(TypeName = "int")]
+        public int max_price { get; set; }
+        [Required]
+        [Column(TypeName = "int")]
+        public int min_price { get; set; }
+        [Required]
         [Column(TypeName = "varchar(255)")]
         public string roast { get; set; }
         [Required]

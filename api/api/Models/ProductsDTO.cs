@@ -10,6 +10,8 @@ namespace api.Models
         public int Id { get; set; }
         public string name { get; set; }
         public string desc { get; set; }
+        public int max_price { get; set; }
+        public int min_price { get; set; }
         public string region { get; set; }
         public string roast { get; set; }
         public int altitude_max { get; set; }

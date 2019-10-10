@@ -10,7 +10,7 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(CoffeeContext))]
-    [Migration("20191004083430_init")]
+    [Migration("20191010121626_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,8 @@ namespace api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ProductId");
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("created_at")
                         .HasColumnType("datetime");
@@ -41,9 +42,6 @@ namespace api.Migrations
                     b.Property<int>("price")
                         .HasColumnType("int");
 
-                    b.Property<int>("product_id")
-                        .HasColumnType("int");
-
                     b.Property<int>("quantity")
                         .HasColumnType("int");
 
@@ -55,7 +53,7 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductID");
 
                     b.ToTable("ProductOptions");
                 });
@@ -89,6 +87,12 @@ namespace api.Migrations
 
                     b.Property<byte>("isDeleted")
                         .HasColumnType("tinyint");
+
+                    b.Property<int>("max_price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("min_price")
+                        .HasColumnType("int");
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -164,7 +168,8 @@ namespace api.Migrations
                 {
                     b.HasOne("api.Models.Products", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

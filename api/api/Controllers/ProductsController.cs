@@ -22,13 +22,15 @@ namespace api.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductsDTO>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductsDTO>>> GetProducts(String order = "default")
         {
             var prods = db.Products.Select(
                 p => new ProductsDTO{
                     Id = p.Id,
                     name = p.name,
                     desc = p.desc,
+                    max_price = p.max_price,
+                    min_price = p.min_price,
                     region = p.region,
                     roast = p.roast,
                     altitude_max = p.altitude_max,
@@ -38,9 +40,27 @@ namespace api.Controllers
                     updated_at = p.updated_at,
                     image_url = p.image_url
                 }
-            ).ToListAsync();
+            );
 
-            return await prods;
+            var orderProducts = prods;
+
+            switch (order)
+            {
+                case "name_asc":
+                    orderProducts = prods.OrderBy(p=> p.name);
+                    break;
+                case "name_desc":
+                    orderProducts = prods.OrderByDescending(p=>p.name);
+                    break;
+                default:
+
+                    break;
+            }
+            var orderProds = prods.OrderBy(p => p.Id);
+
+            var listProds = orderProds.ToListAsync();
+
+            return await listProds;
         }
 
         // GET: api/Products/1
@@ -53,7 +73,7 @@ namespace api.Controllers
             }
 
             var listProductOptions = await db.ProductOptions.Where(
-                    po => po.product_id.Equals(id)
+                    po => po.ProductID.Equals(id)
                 ).Select(
                     po => new ProductOptionsDTO()
                     {
@@ -61,7 +81,7 @@ namespace api.Controllers
                         price = po.price,
                         quantity = po.quantity,
                         weight = po.weight,
-                        product_id = po.product_id,
+                        ProductID = po.ProductID,
                         isDeleted = po.isDeleted,
                         isAvailable = po.isAvailable,
                         created_at = po.created_at,
@@ -78,6 +98,8 @@ namespace api.Controllers
                         Id = p.Id,
                         name = p.name,
                         desc = p.desc,
+                        max_price = p.max_price,
+                        min_price = p.min_price,
                         region = p.region,
                         roast = p.roast,                        
                         altitude_max = p.altitude_max,
@@ -100,6 +122,7 @@ namespace api.Controllers
         [HttpPost]
         public async Task<ActionResult<Products>> PostProducts(
             string inName, string inDesc, 
+            int inMax_price, int inMin_price,
             string inRegion, string inRoast,
             int inAltitude_max, int inAltitude_min,
             string inBean_type, string inImage_url
@@ -109,6 +132,8 @@ namespace api.Controllers
             {
                 name = inName,
                 desc = inDesc,
+                max_price = inMax_price,
+                min_price= inMin_price,
                 region = inRegion,
                 roast = inRoast,
                 altitude_max = inAltitude_max,

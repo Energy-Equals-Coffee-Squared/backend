@@ -30,7 +30,7 @@ namespace api.Models
         [Required]
         [ForeignKey("Prodcut")]
         [Column(TypeName = "int")]
-        public int product_id { get; set; }
+        public int ProductID { get; set; }
 
         public Products Product { get; set; }
         [Required]
