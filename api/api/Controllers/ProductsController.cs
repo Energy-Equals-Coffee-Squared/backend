@@ -122,7 +122,6 @@ namespace api.Controllers
         [HttpPost]
         public async Task<ActionResult<Products>> PostProducts(
             string inName, string inDesc, 
-            int inMax_price, int inMin_price,
             string inRegion, string inRoast,
             int inAltitude_max, int inAltitude_min,
             string inBean_type, string inImage_url
@@ -132,8 +131,8 @@ namespace api.Controllers
             {
                 name = inName,
                 desc = inDesc,
-                max_price = inMax_price,
-                min_price= inMin_price,
+                max_price = 0,
+                min_price= 0,
                 region = inRegion,
                 roast = inRoast,
                 altitude_max = inAltitude_max,

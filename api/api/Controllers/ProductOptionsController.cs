@@ -20,55 +20,48 @@ namespace api.Controllers
             db = context;
         }
 
-        // GET: api/ProductOptions
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductOptions>>> GetProductOptions()
+        private void updateMaxMinPrice(int prodID, int newPrice)
         {
-            return await db.ProductOptions.ToListAsync();
-        }
-
-        // GET: api/ProductOptions/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ProductOptions>> GetProductOptions(int id)
-        {
-            var productOptions = await db.ProductOptions.FindAsync(id);
-
-            if (productOptions == null)
+            var prod = db.Products.Find(prodID);
+            if (prod == null)
             {
-                return NotFound();
+                throw new Exception("No Product Found with the ID provided");
             }
-
-            return productOptions;
-        }
-
-        // PUT: api/ProductOptions/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProductOptions(int id, ProductOptions productOptions)
-        {
-            if (id != productOptions.Id)
+            else
             {
-                return BadRequest();
-            }
-
-            db.Entry(productOptions).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductOptionsExists(id))
+                int numChanges = 0;
+                // if both the max and min price are 0 set them both to the new price
+                if (prod.max_price == 0 && prod.max_price == 0)
                 {
-                    return NotFound();
+                    prod.max_price = newPrice;
+                    prod.min_price = newPrice;
+                    numChanges++;
                 }
-                else
+                else if (prod.max_price < newPrice)
                 {
-                    throw;
+                    prod.max_price = newPrice;
+                    numChanges++;
+                }
+                else if (prod.min_price > newPrice)
+                {
+                    prod.min_price = newPrice;
+                    numChanges++;
+                }
+
+                // if there are no changes made
+                if (numChanges > 0)
+                {
+                    db.Products.Update(prod);
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception("Error when trying to update product max and/or min price");
+                    }
                 }
             }
-
-            return NoContent();
         }
 
         // POST: api/ProductOptions
@@ -85,26 +78,19 @@ namespace api.Controllers
                 quantity = inQuantity,
                 ProductID = inProductID
             };
-            db.ProductOptions.Add(productOptions);
-            await db.SaveChangesAsync();
-
-            return CreatedAtAction("GetProductOptions", new { id = productOptions.Id }, productOptions);
-        }
-
-        // DELETE: api/ProductOptions/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<ProductOptions>> DeleteProductOptions(int id)
-        {
-            var productOptions = await db.ProductOptions.FindAsync(id);
-            if (productOptions == null)
+            try
             {
-                return NotFound();
+                db.ProductOptions.Add(productOptions);
+                await db.SaveChangesAsync();
+
+                updateMaxMinPrice(productOptions.ProductID, productOptions.price);
+
+                return CreatedAtAction("GetProductOptions", new { id = productOptions.Id }, productOptions);
             }
-
-            db.ProductOptions.Remove(productOptions);
-            await db.SaveChangesAsync();
-
-            return productOptions;
+            catch (Exception ex)
+            {
+                return new JsonResult(new { Status = "Error", ex.Message });
+            };
         }
 
         private bool ProductOptionsExists(int id)
