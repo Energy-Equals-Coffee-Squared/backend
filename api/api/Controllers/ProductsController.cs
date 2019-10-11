@@ -65,7 +65,7 @@ namespace api.Controllers
 
         // GET: api/Products/1
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<ProductsDTO>>> GetSingleProduct(int id)
+        public async Task<ActionResult<ProductsDTO>> GetSingleProduct(int id)
         {
             if (!ProductsExists(id))
             {
@@ -110,7 +110,7 @@ namespace api.Controllers
                         image_url = p.image_url,
                         productOptions = listProductOptions
                     }
-                ).ToListAsync();
+                ).FirstOrDefaultAsync();
 
             
             return products;

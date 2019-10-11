@@ -66,17 +66,29 @@ namespace api.Controllers
 
         // POST: api/ProductOptions
         [HttpPost]
-        public async Task<ActionResult<ProductOptions>> PostProductOptions(
+        public async Task<ActionResult<ProductOptionsDTO>> PostProductOptions(
             int inPrice, int inWeight,
             int inQuantity, int inProductID
         )
         {
+            Products prod = db.Products.FindAsync(inProductID).Result;
+
+            if(prod == null)
+            {
+                return new JsonResult(new { Status = "Error", Message = "No Product with the id of "+ inProductID });
+            }
+
             ProductOptions productOptions = new ProductOptions
             {
                 price = inPrice,
                 weight = inWeight,
                 quantity = inQuantity,
-                ProductID = inProductID
+                ProductID = inProductID,
+                created_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                isAvailable = true,
+                isDeleted = false,
+                Product = prod
             };
             try
             {
@@ -85,7 +97,19 @@ namespace api.Controllers
 
                 updateMaxMinPrice(productOptions.ProductID, productOptions.price);
 
-                return CreatedAtAction("GetProductOptions", new { id = productOptions.Id }, productOptions);
+                ProductOptionsDTO prodOptDTO = new ProductOptionsDTO
+                {
+                    price = inPrice,
+                    weight = inWeight,
+                    quantity = inQuantity,
+                    ProductID = inProductID,
+                    created_at = DateTime.Now,
+                    updated_at = DateTime.Now,
+                    isAvailable = true,
+                    isDeleted = false
+                };
+                
+                return prodOptDTO;
             }
             catch (Exception ex)
             {
