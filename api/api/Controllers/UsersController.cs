@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.Models;
+using api.Helpers;
 
 namespace api.Controllers
 {
@@ -44,12 +45,12 @@ namespace api.Controllers
         // POST: api/Users/Login
         [Route("Login")]
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<UsersDTO>>> LoginUser(string username, string password)
+        public async Task<ActionResult<UsersDTO>> LoginUser(string username, string password)
         {
 
             var users = await db.Users.Where(
                 u => u.username.Equals(username)
-                && u.password.Equals(password)
+                && u.password.Equals(Encryption.HashPassword(password))
                 && u.isActive.Equals(true)
                 && u.isDelted.Equals(false)
             ).Select(
@@ -65,9 +66,9 @@ namespace api.Controllers
                     updated_at = u.updated_at,
                     isAdmin = u.isAdmin
                 }
-            ).ToListAsync();
+            ).FirstOrDefaultAsync();
 
-            if (users.Count == 0)
+            if (users == null)
             {
                 return NotFound();
             }
@@ -78,7 +79,7 @@ namespace api.Controllers
         // POST: api/Users/Register
         [Route("Register")]
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<UsersDTO>>> RegisterUser(
+        public async Task<ActionResult<UsersDTO>> RegisterUser(
             string inUsername, string inEmail,
             string inFirst_name, string inLast_name,
             string inPassword, string inContact_number
@@ -90,7 +91,7 @@ namespace api.Controllers
                 email = inEmail,
                 first_name = inFirst_name,
                 last_name = inLast_name,
-                password = inPassword,
+                password = Encryption.HashPassword(inPassword),
                 contact_number = inContact_number,
                 created_at = DateTime.Now,
                 updated_at = DateTime.Now,
@@ -113,14 +114,13 @@ namespace api.Controllers
                 updated_at = users.updated_at,
                 isAdmin = users.isAdmin
             };
-            List<UsersDTO> data = new List<UsersDTO>() { userDTO };
-            return data;
+            return userDTO;
         }
 
         // POST: api/Users/Login
         [Route("Delete")]
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<UsersDTO>>> DeleteUser(int id)
+        public async Task<ActionResult<UsersDTO>> DeleteUser(int id)
         {
 
             var users = await db.Users.FindAsync(id);
@@ -146,10 +146,7 @@ namespace api.Controllers
                 updated_at = users.updated_at,
                 isAdmin = users.isAdmin
             };
-
-            List<UsersDTO> data = new List<UsersDTO>();
-            data.Add(userDTO);
-            return data;
+            return userDTO;
         }
 
         private bool UsersExists(int id)
