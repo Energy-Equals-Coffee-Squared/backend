@@ -70,10 +70,9 @@ namespace api.Controllers
 
             if (users == null)
             {
-                return NotFound();
+                return new JsonResult(new { Status = "error", Message = "Username or Password is incorrect"});
             }
-
-            return users;
+            return new JsonResult(new { Status = "success", Message = users });
         }
 
         // POST: api/Users/Register
@@ -85,6 +84,16 @@ namespace api.Controllers
             string inPassword, string inContact_number
             )
         {
+            if (isUsernameTaken(inUsername))
+            {
+                return new JsonResult(new { Status = "error", Message = "Username is taken" });
+            }
+
+            if (isEmailTaken(inEmail))
+            {
+                return new JsonResult(new { Status = "error", Message = "Email is taken" });
+            }
+
             Users users = new Users
             {
                 username = inUsername,
@@ -100,7 +109,14 @@ namespace api.Controllers
                 isAdmin = false
             };
             db.Users.Add(users);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(new { Status = "error", Message = "An error has occured"});
+            }
 
             UsersDTO userDTO = new UsersDTO
             {
@@ -114,7 +130,7 @@ namespace api.Controllers
                 updated_at = users.updated_at,
                 isAdmin = users.isAdmin
             };
-            return userDTO;
+            return new JsonResult(new { Status = "success", Message = userDTO });
         }
 
         // POST: api/Users/Login
@@ -147,6 +163,16 @@ namespace api.Controllers
                 isAdmin = users.isAdmin
             };
             return userDTO;
+        }
+
+        private bool isUsernameTaken(string username)
+        {
+            return db.Users.Any(e => e.username == username);
+        }
+
+        private bool isEmailTaken(string email)
+        {
+            return db.Users.Any(e => e.email == email);
         }
 
         private bool UsersExists(int id)
