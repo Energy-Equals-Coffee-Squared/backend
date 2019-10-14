@@ -3,76 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using api.Models;
 
 namespace api.Migrations
 {
     [DbContext(typeof(CoffeeContext))]
-    partial class CoffeeContextModelSnapshot : ModelSnapshot
+    [Migration("20191014112959_invoices")]
+    partial class invoices
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("api.Models.InvoiceItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("InvoiceID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductOptionID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("opt_price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("prod_altitude_max")
-                        .HasColumnType("int");
-
-                    b.Property<int>("prod_altitude_min")
-                        .HasColumnType("int");
-
-                    b.Property<string>("prod_bean_type")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("prod_desc")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("prod_image_url")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("prod_name")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("prod_region")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("prod_roast")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<int>("quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InvoiceID");
-
-                    b.ToTable("InvoiceItems");
-                });
 
             modelBuilder.Entity("api.Models.Invoices", b =>
                 {
@@ -140,36 +87,36 @@ namespace api.Migrations
                         {
                             Id = 1,
                             ProductID = 1,
-                            created_at = new DateTime(2019, 10, 14, 13, 30, 38, 990, DateTimeKind.Local).AddTicks(8675),
+                            created_at = new DateTime(2019, 10, 14, 13, 29, 58, 877, DateTimeKind.Local).AddTicks(9324),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 8000,
                             quantity = 15,
-                            updated_at = new DateTime(2019, 10, 14, 13, 30, 38, 990, DateTimeKind.Local).AddTicks(9237),
+                            updated_at = new DateTime(2019, 10, 14, 13, 29, 58, 877, DateTimeKind.Local).AddTicks(9829),
                             weight = 250
                         },
                         new
                         {
                             Id = 2,
                             ProductID = 1,
-                            created_at = new DateTime(2019, 10, 14, 13, 30, 38, 991, DateTimeKind.Local).AddTicks(717),
+                            created_at = new DateTime(2019, 10, 14, 13, 29, 58, 878, DateTimeKind.Local).AddTicks(1599),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 15000,
                             quantity = 15,
-                            updated_at = new DateTime(2019, 10, 14, 13, 30, 38, 991, DateTimeKind.Local).AddTicks(722),
+                            updated_at = new DateTime(2019, 10, 14, 13, 29, 58, 878, DateTimeKind.Local).AddTicks(1605),
                             weight = 500
                         },
                         new
                         {
                             Id = 3,
                             ProductID = 1,
-                            created_at = new DateTime(2019, 10, 14, 13, 30, 38, 991, DateTimeKind.Local).AddTicks(735),
+                            created_at = new DateTime(2019, 10, 14, 13, 29, 58, 878, DateTimeKind.Local).AddTicks(1619),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 28000,
                             quantity = 15,
-                            updated_at = new DateTime(2019, 10, 14, 13, 30, 38, 991, DateTimeKind.Local).AddTicks(736),
+                            updated_at = new DateTime(2019, 10, 14, 13, 29, 58, 878, DateTimeKind.Local).AddTicks(1620),
                             weight = 1000
                         });
                 });
@@ -236,7 +183,7 @@ namespace api.Migrations
                             altitude_max = 9000,
                             altitude_min = 7000,
                             bean_type = "Arabic",
-                            created_at = new DateTime(2019, 10, 14, 13, 30, 38, 989, DateTimeKind.Local).AddTicks(8010),
+                            created_at = new DateTime(2019, 10, 14, 13, 29, 58, 876, DateTimeKind.Local).AddTicks(7581),
                             desc = "Ethiopian Limu is from the western escarpments of the Ethiopian highlands. Our single origin is a fully washed, high quality coffee with rich, round flavour and a pronounced sweetness on the palate.",
                             image_url = "404.jpg",
                             isDeleted = (byte)0,
@@ -245,7 +192,7 @@ namespace api.Migrations
                             name = "ETHIOPIAN LIMU",
                             region = "Ethiopia",
                             roast = "light",
-                            updated_at = new DateTime(2019, 10, 14, 13, 30, 38, 990, DateTimeKind.Local).AddTicks(4085)
+                            updated_at = new DateTime(2019, 10, 14, 13, 29, 58, 877, DateTimeKind.Local).AddTicks(4250)
                         });
                 });
 
@@ -297,14 +244,6 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("api.Models.InvoiceItems", b =>
-                {
-                    b.HasOne("api.Models.Invoices", "Invoice")
-                        .WithMany()
-                        .HasForeignKey("InvoiceID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("api.Models.Invoices", b =>

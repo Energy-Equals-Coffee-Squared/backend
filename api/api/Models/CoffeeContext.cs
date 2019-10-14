@@ -19,6 +19,9 @@ namespace api.Models
 
         public DbSet<ProductOptions> ProductOptions { get; set; }
 
+        public DbSet<Invoices> Invoices { get; set; }
+        public DbSet<InvoiceItems> InvoiceItems { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Products>().HasData(
