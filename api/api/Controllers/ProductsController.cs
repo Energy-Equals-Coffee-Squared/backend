@@ -153,7 +153,6 @@ namespace api.Controllers
             {
                 return ValidationProblem();
             }
-            
 
             return CreatedAtAction("GetProducts", new { id = products.Id }, products);
         }
