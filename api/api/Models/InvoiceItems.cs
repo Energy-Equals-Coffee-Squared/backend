@@ -50,6 +50,9 @@ namespace api.Models
         public int opt_price { get; set; }
         [Required]
         [Column(TypeName = "int")]
+        public int opt_weight { get; set; }
+        [Required]
+        [Column(TypeName = "int")]
         public int quantity { get; set; }
     }
 }

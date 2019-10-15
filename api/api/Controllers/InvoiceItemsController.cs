@@ -142,6 +142,7 @@ namespace api.Controllers
                 prod_bean_type = prodOpt.Product.bean_type,
                 prod_image_url = prodOpt.Product.image_url,
                 opt_price = prodOpt.price,
+                opt_weight = prodOpt.weight,
                 quantity = inQuantity
             };
 
@@ -188,6 +189,7 @@ namespace api.Controllers
                 prod_bean_type = prodOpt.Product.bean_type,
                 prod_image_url = prodOpt.Product.image_url,
                 opt_price = prodOpt.price,
+                opt_weight = prodOpt.weight,                
                 quantity = inQuantity
             };
 

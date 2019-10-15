@@ -41,34 +41,26 @@ namespace api.Controllers
             return invoices;
         }
 
-        // PUT: api/Invoices/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutInvoices(int id, Invoices invoices)
+        // POST: api/Invoices/getInvoice
+        [Route("getInvoice")]
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<InvoicesDTO>>> getUsersInvoices(int inUserID)
         {
-            if (id != invoices.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(invoices).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!InvoicesExists(id))
+            var invsDTO = db.Invoices.Where(i => i.UserID.Equals(inUserID)).Select(
+                i => new InvoicesDTO
                 {
-                    return NotFound();
+                    Id = i.Id,
+                    UserID = i.UserID,
+                    total = i.total,
+                    updated_at = i.updated_at,
+                    created_at = i.created_at,
+                    invoiceItems = null
                 }
-                else
-                {
-                    throw;
-                }
-            }
+            ).OrderByDescending(i => i.created_at);
 
-            return NoContent();
+            var tempList = await invsDTO.ToListAsync();
+
+            return new JsonResult(new { Status = "success", Message = tempList });
         }
 
         
@@ -116,20 +108,44 @@ namespace api.Controllers
             return new JsonResult(new { Status = "success", Message = invcDTO });
         }
 
-        // DELETE: api/Invoices/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Invoices>> DeleteInvoices(int id)
+        // POST: api/Invoices/getSpecificInvoice
+        [Route("getSpecificInvoice")]
+        [HttpPost]
+        public async Task<ActionResult<InvoicesDTO>> getSpecificInvoice(int inUserID, int inInvoiceID)
         {
-            var invoices = await db.Invoices.FindAsync(id);
-            if (invoices == null)
-            {
-                return NotFound();
-            }
+            var invsItemsDTO = await db.InvoiceItems.Where(i => i.InvoiceID.Equals(inInvoiceID)).Select(
+                i => new InvoiceItemsDTO
+                {
+                    Id = i.Id,
+                    InvoiceID = i.InvoiceID,
+                    opt_price = i.opt_price,
+                    opt_weight = i.opt_price,
+                    ProductOptionID = i.ProductOptionID,
+                    prod_altitude_max = i.prod_altitude_max,
+                    prod_altitude_min = i.prod_altitude_min,
+                    prod_bean_type = i.prod_bean_type,
+                    prod_desc = i.prod_desc,
+                    prod_image_url = i.prod_image_url,
+                    prod_name = i.prod_name,
+                    prod_region = i.prod_region,
+                    prod_roast = i.prod_roast,
+                    quantity = i.quantity
+                }
+            ).ToListAsync();
 
-            db.Invoices.Remove(invoices);
-            await db.SaveChangesAsync();
+            var invsDTO = await db.Invoices.Where(i => i.UserID.Equals(inUserID) && i.Id.Equals(inInvoiceID)).Select(
+                i => new InvoicesDTO
+                {
+                    Id = i.Id,
+                    UserID = i.UserID,
+                    total = i.total,
+                    updated_at = i.updated_at,
+                    created_at = i.created_at,
+                    invoiceItems = invsItemsDTO
+                }
+            ).FirstOrDefaultAsync();
 
-            return invoices;
+            return new JsonResult(new { Status = "success", Message = invsDTO });
         }
 
         private bool InvoicesExists(int id)

@@ -19,6 +19,7 @@ namespace api.Models
         public string prod_bean_type { get; set; }
         public string prod_image_url { get; set; }
         public int opt_price { get; set; }
+        public int opt_weight { get; set; }
         public int quantity { get; set; }
     }
 }
