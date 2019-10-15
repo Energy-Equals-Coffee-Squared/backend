@@ -27,6 +27,14 @@ namespace api.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DiscountCodes>().HasData(
+                new DiscountCodes
+                {
+                    Id = 1, 
+                    code = "15OFF",
+                    percentage = 15
+                }
+            );
             modelBuilder.Entity<Products>().HasData(
                 new Products
                 {

@@ -56,9 +56,8 @@ namespace api.Controllers
 
                     break;
             }
-            var orderProds = prods.OrderBy(p => p.Id);
 
-            var listProds = orderProds.ToListAsync();
+            var listProds = orderProducts.ToListAsync();
 
             return await listProds;
         }

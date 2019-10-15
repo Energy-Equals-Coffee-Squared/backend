@@ -35,10 +35,10 @@ namespace api.Controllers
 
             if (discountCodes == null)
             {
-                return NotFound();
+                return new JsonResult(new { Status = "error", Message = "Discount Code is not valid"});
             }
 
-            return discountCodes;
+            return new JsonResult(new { Status = "success", Message = discountCodes });
         }
 
         private bool DiscountCodesExists(int id)

@@ -80,10 +80,21 @@ namespace api.Controllers
                 throw new Exception("No Invoice with the Id: "+ invID);
             }
 
-            int total = optPrice * qty;
+            var total = optPrice * qty;
+
+            var discPercent = (double) inv.discount_percentage;
+
+            double discountRate = ((double) discPercent) / ((double) 100);
+
+            var calcDiscountRate = total * discountRate;
+
+            total = total - (int)calcDiscountRate;
 
             inv.total += total;
-            inv.tax += (total / 100) * 15;
+
+            var taxRate = 15;
+
+            inv.tax += (total / 100) * taxRate;
 
             if(inv.total >= 500 && inv.isFreeShipping == false)
             {
