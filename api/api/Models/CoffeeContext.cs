@@ -384,7 +384,7 @@ namespace api.Models
                     Id = 19,
                     name = "BRU Etheopia",
                     desc = "A full bodied, sweet with fruity after taste. We roast this coffee medium-dark to maintain the complex flavours, a coffee" +
-                    " that will place a smile on any connoisseur's face.",
+                    " that will place a smile on any connoisseurs face.",
                     max_price = 50000,
                     min_price = 32000,
                     region = "Ethiopia",

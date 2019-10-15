@@ -16,7 +16,7 @@ namespace api.Models
         [Column(TypeName = "varchar(255)")]
         public string name { get; set; }
         [Required]
-        [Column(TypeName = "varchar(255)")]
+        [Column(TypeName = "varchar(1000)")]
         public string desc { get; set; }
         [Required]
         [Column(TypeName = "varchar(255)")]
