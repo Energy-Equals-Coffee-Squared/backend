@@ -135,7 +135,7 @@ namespace api.Controllers
             return new JsonResult(new { Status = "success", Message = userDTO });
         }
 
-        // POST: api/Users/Login
+        // POST: api/Users/Delete
         [Route("Delete")]
         [HttpPost]
         public async Task<ActionResult<UsersDTO>> DeleteUser(int id)

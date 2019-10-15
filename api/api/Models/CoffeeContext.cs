@@ -20,7 +20,10 @@ namespace api.Models
         public DbSet<ProductOptions> ProductOptions { get; set; }
 
         public DbSet<Invoices> Invoices { get; set; }
+
         public DbSet<InvoiceItems> InvoiceItems { get; set; }
+
+        public DbSet<DiscountCodes> DiscountCodes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
