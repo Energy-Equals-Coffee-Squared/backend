@@ -54,9 +54,7 @@ namespace api.Models
                     name = "Truth. - Ethiopia Guji",
                     desc = "Guji is one of those regions of Ethiopia that have garnered much more " +
                     "attention in recent years, competing with the classically popular areas like Yirgacheffe " +
-                    "& Limu. We've had the privilege of tasting quite a few coffees from the Guji region, many " +
-                    "of which we have enjoyed. This new example from Truth is consistently delicious, but quite" +
-                    " different in terms of its flavour profile.",
+                    "& Limu.",
                     max_price = 31000,
                     min_price = 9000,
                     region = "Ethiopia",
@@ -96,8 +94,7 @@ namespace api.Models
                     name = "Bean There - Blend 44",
                     desc = "Bean There's Blend 44 combines their very popular Ethiopia Sidamo, and one of our " +
                     "favourites, their Burundi Musema & Nyarurama. The marriage of these two wonderful coffees yields " +
-                    "everything you might want in a bold yet balanced coffee, suitable for manual brewing or espresso." +
-                    " We particularly enjoyed it in plungers and moka pots.",
+                    "everything you might want in a bold yet balanced coffee, suitable for manual brewing or espresso.",
                     max_price = 25000,
                     min_price = 6000,
                     region = "Ethiopia",
@@ -116,8 +113,7 @@ namespace api.Models
                     Id = 5,
                     name = "Legado - Bolivia Villa Rosario Organic",
                     desc = "Villa Rosario is a colony in the Caranavi area of Yungus. The colony is located between 1550 and 1650 masl and is surrounded by " +
-                    "jungle and small coffee farms. After the land reforms in the 1950s the Bolivian government encouraged people from the Altiplano and La Paz " +
-                    "to move down to the tropical agricultural areas to farm coffee by giving them free parcels of land.",
+                    "jungle and small coffee farms.",
                     max_price = 16000,
                     min_price = 8000,
                     region = "Bolivia",
@@ -136,8 +132,7 @@ namespace api.Models
                     Id = 6,
                     name = "Origin Coffee Roasting - Guatemala Santa Sofia",
                     desc = "Origin Coffee Roasting's decafs are surprisingly delicious. They select top quality single origin beans that are decaffeinated using a " +
-                    "chemical-free process, to ensure maximum flavour retention and no unpleasant artificial qualities. Origin's decafs always work well as espresso, " +
-                    "but you may also enjoy it in filter methods.",
+                    "chemical-free process, to ensure maximum flavour retention and no unpleasant artificial qualities.",
                     max_price = 35000,
                     min_price = 15000,
                     region = "Guatamala",
@@ -156,8 +151,7 @@ namespace api.Models
                     Id = 7,
                     name = "Portland Project - Costa Rica Trojas",
                     desc = "This Costa Rican single origin coffee from The Portland Project has everything that you might look for from that part of the coffee " +
-                    "growing world. Its acidity is very discrete and body is full and satisfying. You'll find many of those nutty notes that people love in Latin " +
-                    "American coffees, but there's also a sweetness that comes through that may remind you of caramelised or candied nuts.",
+                    "growing world. Its acidity is very discrete and body is full and satisfying.",
                     max_price = 29000,
                     min_price = 10000,
                     region = "Costa Rica",
@@ -175,8 +169,8 @@ namespace api.Models
                 {
                     Id = 8,
                     name = "Quaffee - Nicaragua Finca Idealista Anaerobic Nanolot",
-                    desc = "This is a spectacularly and deliciously unusual coffee. Its flavours are quite different from anything we've tasted before, and this may be in part due to the experimental processing method employed. Specifically, it underwent an extended anaerobic fermentation which pioneers are speculating will have a big impact on the acidity of coffees." +
-                    ,
+                    desc = "This is a spectacularly and deliciously unusual coffee. Its flavours are quite different from anything we've tasted before, " +
+                    "and this may be in part due to the experimental processing method employed." ,
                     max_price = 17000,
                     min_price = 10000,
                     region = "Nicaragua",
@@ -195,8 +189,7 @@ namespace api.Models
                     Id = 9,
                     name = "Rosetta Roastery - Honduras San Franscisco Natural",
                     desc = "While Central American coffee is generally well-respected, Honduras is definitely one of the lesser known producers in the region, " +
-                    "at least here in South Africa. Equally many of the best Central American coffees are quite reserved in their flavour profiles. This Honduras " +
-                    "is anything but reserved.",
+                    "at least here in South Africa. Equally many of the best Central American coffees are quite reserved in their flavour profiles.",
                     max_price = 32000,
                     min_price = 18000,
                     region = "Honduras",
@@ -275,8 +268,7 @@ namespace api.Models
                     Id = 13,
                     name = "Origin Coffee Roasting - Rwanda Musasa Ruli",
                     desc = "Rwanda Musasa is a returning favourite from Origin Coffee Roasting. Highly celebrated, the Musasa Dukunde Kawa Cooperative is known " +
-                    "all over the world for its top quality Red Bourbon beans. Every year, our friends at Origin manage to secure one of its best lots, and always " +
-                    "bring out wonderful flavours to enjoy through their masterful roasts.",
+                    "all over the world for its top quality Red Bourbon beans.",
                     max_price = 28000,
                     min_price = 8000,
                     region = "Ruli",
@@ -296,8 +288,7 @@ namespace api.Models
                     name = "Fruit Salad Cape Coffee Blend",
                     desc = "This blend was concocted early one morning when there just wasn't enough of one of the components, and a certain CCTeam member " +
                     "thought, 'what the heck ?'  And so, a blend was born, and it tasted like fruit salad in a cup. It kind of makes sense in the end if you " +
-                    "think about it. You take the wonderful caramel sweetness and orange notes of Quaffee's Colombia Los Idolos, and you combine it with bold " +
-                    "blueberry and dark grape flavours of Rosetta's Honduras San Franscisco Natural. In retrospect it's to be expected: Fruit Salad.",
+                    "think about it.",
                     max_price = 26000,
                     min_price = 12500,
                     region = "South Afica",
@@ -316,9 +307,7 @@ namespace api.Models
                     Id = 15,
                     name = "Rosetta Roastery - Honduras San Franscisco Natural",
                     desc = "While Central American coffee is generally well-respected, Honduras is definitely one of the lesser known producers in the region, at least" +
-                    " here in South Africa. Equally many of the best Central American coffees are quite reserved in their flavour profiles. This Honduras is anything" +
-                    " but reserved" +
-                    "Our first taste of this coffee was actually in a MoccaMaster filter brew. We were immediately captivated by the intense flavours of blueberry.",
+                    " here in South Africa. Equally many of the best Central American coffees are quite reserved in their flavour profiles.",
                     max_price = 60000,
                     min_price = 16000,
                     region = "Marcala",
@@ -338,8 +327,7 @@ namespace api.Models
                     name = "hazz blend - coffee for heroes",
                     desc = "häzz coffee is a rich and subtle, truly modern blend of South American and African origin, suitable for any palate.  It offers an " +
                     "exceptionally wide range of aromas, accompanied by a bold but round and smooth body." +
-                    "In 2012, it won a Gold Medal at the annual International Coffee Tasting in Italy. Every batch is freshly roasted to perfection with the " +
-                    "utmost care. Try it first without sugar – it's that good! A reward for all aspirant heroes.",
+                    "In 2012, it won a Gold Medal at the annual International Coffee Tasting in Italy.",
                     max_price = 30000,
                     min_price = 12500,
                     region = "South America and Africa",
@@ -377,8 +365,7 @@ namespace api.Models
                     Id = 18,
                     name = "ETHIOPIAN HARRAR",
                     desc = "Heavy-bodied, spicy and fragrant, Ethiopian Harrar coffee is a wild and exotic dry processed (natural) Arabica coffee that is " +
-                    "grown on small farms in the Oromia region (formerly Harrar) in southern Ethiopia at elevations between 1,400 meters and 2,000 meters. " +
-                    "The province of Harrar, is east of Addis Ababa, the country’s capitol.",
+                    "grown on small farms in the Oromia region (formerly Harrar) in southern Ethiopia at elevations between 1,400 meters and 2,000 meters.",
                     max_price = 21200,
                     min_price = 15100,
                     region = "Ethiopia",
