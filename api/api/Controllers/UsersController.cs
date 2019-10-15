@@ -165,6 +165,48 @@ namespace api.Controllers
             return userDTO;
         }
 
+        [Route("Edit")]
+        [HttpPost]
+        public async Task<ActionResult<EdtUserDTO>> EdtUser(int Id, string username,
+            string email,string f_name, string l_name,string c_number,
+            int is_active, int is_deleted, int is_admin )
+        {
+
+            var user = await db.Users.Where(
+                u => u.Id.Equals(Id)
+            // && u.username.Equals(username)
+            ).FirstOrDefaultAsync();
+
+            EdtUserDTO edtusr = new EdtUserDTO
+            {
+                username = user.username,
+                email = user.email,
+                first_name = user.first_name,
+                contact_number = user.contact_number,
+                isAdmin = user.isAdmin,
+                isDeleted = user.isDelted,
+                last_name = user.last_name
+
+            };
+
+            edtusr.username = username;
+            edtusr.first_name = f_name;
+            edtusr.last_name = l_name;
+            edtusr.email = email;
+            edtusr.contact_number = c_number;
+            edtusr.isAdmin = Convert.ToBoolean(is_admin);
+            edtusr.isDeleted = Convert.ToBoolean(is_deleted);
+            edtusr.isActive = Convert.ToBoolean(is_active);
+            //TODO PLease do the commiting to DB
+            //db.Users.Update(edtusr);
+
+            if (edtusr == null)
+            {
+                return new JsonResult(new { Status = "error", Message = "Could not update user" });
+            }
+            return new JsonResult(new { Status = "success", Message = edtusr });
+        }
+
         private bool isUsernameTaken(string username)
         {
             return db.Users.Any(e => e.username == username);
