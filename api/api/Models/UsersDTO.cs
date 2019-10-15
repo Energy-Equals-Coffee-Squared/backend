@@ -16,5 +16,7 @@ namespace api.Models
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public bool isAdmin { get; set; }
+        public bool isDeleted { get; set; }
+        public bool isActive { get; set; }
     }
 }

@@ -128,7 +128,9 @@ namespace api.Controllers
                 contact_number = users.contact_number,
                 created_at = users.created_at,
                 updated_at = users.updated_at,
-                isAdmin = users.isAdmin
+                isAdmin = users.isAdmin,
+                isActive = users.isActive,
+                isDeleted = users.isDelted
             };
             return new JsonResult(new { Status = "success", Message = userDTO });
         }
@@ -142,7 +144,7 @@ namespace api.Controllers
             var users = await db.Users.FindAsync(id);
             if (users == null)
             {
-                return NotFound();
+                return new JsonResult(new { Status = "error", Message = "No user found with the id: "+id });
             }
 
             users.isDelted = true;
@@ -160,50 +162,77 @@ namespace api.Controllers
                 contact_number = users.contact_number,
                 created_at = users.created_at,
                 updated_at = users.updated_at,
-                isAdmin = users.isAdmin
+                isAdmin = users.isAdmin,
+                isActive = users.isActive,
+                isDeleted = users.isDelted
             };
             return userDTO;
         }
 
         [Route("Edit")]
         [HttpPost]
-        public async Task<ActionResult<EdtUserDTO>> EdtUser(int Id, string username,
+        public async Task<ActionResult<UsersDTO>> EdtUser(int Id, string username,
             string email,string f_name, string l_name,string c_number,
             int is_active, int is_deleted, int is_admin )
         {
-
             var user = await db.Users.Where(
                 u => u.Id.Equals(Id)
             // && u.username.Equals(username)
             ).FirstOrDefaultAsync();
 
-            EdtUserDTO edtusr = new EdtUserDTO
+            if (!user.email.Equals(email) && isEmailTaken(email))
             {
+                return new JsonResult(new { Status = "error", Message = "Eamil is taken" });
+            }
+
+
+            if (!user.username.Equals(username) && isUsernameTaken(username))
+            {
+                return new JsonResult(new { Status = "error", Message = "Username is taken" });
+            }
+
+            try
+            {
+                user.username = username;
+                user.first_name = f_name;
+                user.last_name = l_name;
+                user.email = email;
+                user.contact_number = c_number;
+                user.isAdmin = Convert.ToBoolean(is_admin);
+                user.isDelted = Convert.ToBoolean(is_deleted);
+                user.isActive = Convert.ToBoolean(is_active);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(new { Status = "error", Message = "Invalid data given" });
+            }
+            
+
+            db.Users.Update(user);
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(new { Status = "error", Message = "An error has occured" });
+            }
+
+            UsersDTO edtusr = new UsersDTO
+            {
+                Id = user.Id,
                 username = user.username,
                 email = user.email,
                 first_name = user.first_name,
+                last_name = user.last_name,
                 contact_number = user.contact_number,
+                created_at = user.created_at,
+                updated_at = user.updated_at,
                 isAdmin = user.isAdmin,
-                isDeleted = user.isDelted,
-                last_name = user.last_name
-
+                isActive = user.isActive,
+                isDeleted = user.isDelted
             };
 
-            edtusr.username = username;
-            edtusr.first_name = f_name;
-            edtusr.last_name = l_name;
-            edtusr.email = email;
-            edtusr.contact_number = c_number;
-            edtusr.isAdmin = Convert.ToBoolean(is_admin);
-            edtusr.isDeleted = Convert.ToBoolean(is_deleted);
-            edtusr.isActive = Convert.ToBoolean(is_active);
-            //TODO PLease do the commiting to DB
-            //db.Users.Update(edtusr);
-
-            if (edtusr == null)
-            {
-                return new JsonResult(new { Status = "error", Message = "Could not update user" });
-            }
             return new JsonResult(new { Status = "success", Message = edtusr });
         }
 
