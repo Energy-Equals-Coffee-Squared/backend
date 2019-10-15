@@ -13,6 +13,16 @@ namespace api.Models
         public int Id { get; set; }
         [Required]
         [Column(TypeName = "int")]
+        public int tax { get; set; }
+        [Column(TypeName = "varchar(255)")]
+        public string discount_code { get; set; }
+        [Column(TypeName = "int")]
+        public int discount_percentage { get; set; }
+        [Required]
+        [Column(TypeName = "tinyint")]
+        public bool isFreeShipping { get; set; }
+        [Required]
+        [Column(TypeName = "int")]
         public int total { get; set; }
         [Required]
         [Column(TypeName = "int")]

@@ -10,8 +10,8 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(CoffeeContext))]
-    [Migration("20191015005954_update invoice items")]
-    partial class updateinvoiceitems
+    [Migration("20191015204903_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,24 @@ namespace api.Migrations
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("api.Models.DiscountCodes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("code")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("percentage")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DiscountCodes");
+                });
 
             modelBuilder.Entity("api.Models.InvoiceItems", b =>
                 {
@@ -91,6 +109,18 @@ namespace api.Migrations
                     b.Property<DateTime>("created_at")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("discount_code")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("discount_percentage")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("isFreeShipping")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int>("tax")
+                        .HasColumnType("int");
+
                     b.Property<int>("total")
                         .HasColumnType("int");
 
@@ -145,36 +175,36 @@ namespace api.Migrations
                         {
                             Id = 1,
                             ProductID = 1,
-                            created_at = new DateTime(2019, 10, 15, 2, 59, 54, 783, DateTimeKind.Local).AddTicks(682),
+                            created_at = new DateTime(2019, 10, 15, 22, 49, 2, 758, DateTimeKind.Local).AddTicks(5317),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 8000,
                             quantity = 15,
-                            updated_at = new DateTime(2019, 10, 15, 2, 59, 54, 783, DateTimeKind.Local).AddTicks(967),
+                            updated_at = new DateTime(2019, 10, 15, 22, 49, 2, 758, DateTimeKind.Local).AddTicks(5797),
                             weight = 250
                         },
                         new
                         {
                             Id = 2,
                             ProductID = 1,
-                            created_at = new DateTime(2019, 10, 15, 2, 59, 54, 783, DateTimeKind.Local).AddTicks(1882),
+                            created_at = new DateTime(2019, 10, 15, 22, 49, 2, 758, DateTimeKind.Local).AddTicks(9235),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 15000,
                             quantity = 15,
-                            updated_at = new DateTime(2019, 10, 15, 2, 59, 54, 783, DateTimeKind.Local).AddTicks(1887),
+                            updated_at = new DateTime(2019, 10, 15, 22, 49, 2, 758, DateTimeKind.Local).AddTicks(9246),
                             weight = 500
                         },
                         new
                         {
                             Id = 3,
                             ProductID = 1,
-                            created_at = new DateTime(2019, 10, 15, 2, 59, 54, 783, DateTimeKind.Local).AddTicks(1900),
+                            created_at = new DateTime(2019, 10, 15, 22, 49, 2, 758, DateTimeKind.Local).AddTicks(9260),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 28000,
                             quantity = 15,
-                            updated_at = new DateTime(2019, 10, 15, 2, 59, 54, 783, DateTimeKind.Local).AddTicks(1900),
+                            updated_at = new DateTime(2019, 10, 15, 22, 49, 2, 758, DateTimeKind.Local).AddTicks(9261),
                             weight = 1000
                         });
                 });
@@ -241,7 +271,7 @@ namespace api.Migrations
                             altitude_max = 9000,
                             altitude_min = 7000,
                             bean_type = "Arabic",
-                            created_at = new DateTime(2019, 10, 15, 2, 59, 54, 782, DateTimeKind.Local).AddTicks(1676),
+                            created_at = new DateTime(2019, 10, 15, 22, 49, 2, 756, DateTimeKind.Local).AddTicks(7997),
                             desc = "Ethiopian Limu is from the western escarpments of the Ethiopian highlands. Our single origin is a fully washed, high quality coffee with rich, round flavour and a pronounced sweetness on the palate.",
                             image_url = "404.jpg",
                             isDeleted = (byte)0,
@@ -250,7 +280,7 @@ namespace api.Migrations
                             name = "ETHIOPIAN LIMU",
                             region = "Ethiopia",
                             roast = "light",
-                            updated_at = new DateTime(2019, 10, 15, 2, 59, 54, 782, DateTimeKind.Local).AddTicks(6839)
+                            updated_at = new DateTime(2019, 10, 15, 22, 49, 2, 757, DateTimeKind.Local).AddTicks(4599)
                         });
                 });
 

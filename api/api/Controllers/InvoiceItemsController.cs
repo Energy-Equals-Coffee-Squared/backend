@@ -83,6 +83,12 @@ namespace api.Controllers
             int total = optPrice * qty;
 
             inv.total += total;
+            inv.tax += (total / 100) * 15;
+
+            if(inv.total >= 500 && inv.isFreeShipping == false)
+            {
+                inv.isFreeShipping = true;
+            }
 
             db.Invoices.Update(inv);
             try
@@ -171,6 +177,10 @@ namespace api.Controllers
                 Id = invoice.Id,
                 total = invoice.total,
                 UserID = invoice.UserID,
+                discount_code = invoice.discount_code,
+                discount_percentage = invoice.discount_percentage,
+                isFreeShipping = invoice.isFreeShipping,
+                tax = invoice.tax,
                 created_at = invoice.created_at,
                 updated_at = invoice.created_at
             };

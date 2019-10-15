@@ -51,6 +51,10 @@ namespace api.Controllers
                 {
                     Id = i.Id,
                     UserID = i.UserID,
+                    discount_code = i.discount_code,
+                    discount_percentage = i.discount_percentage,
+                    isFreeShipping = i.isFreeShipping,
+                    tax = i.tax,
                     total = i.total,
                     updated_at = i.updated_at,
                     created_at = i.created_at,
@@ -67,7 +71,7 @@ namespace api.Controllers
         // POST: api/Invoices/addInvoice
         [Route("addInvoice")]
         [HttpPost]
-        public async Task<ActionResult<InvoicesDTO>> addInvoice(int inUserID)
+        public async Task<ActionResult<InvoicesDTO>> addInvoice(int inUserID, string discountCode = null)
         {
             Users user = await db.Users.FindAsync(inUserID);
 
@@ -80,10 +84,23 @@ namespace api.Controllers
             {
                 User = user,
                 UserID = user.Id,
+                tax = 0,
                 total = 0,
+                isFreeShipping = false,
                 created_at = DateTime.Now,
                 updated_at = DateTime.Now
             };
+
+            if(discountCode != null)
+            {
+                DiscountCodes discCodes = await db.DiscountCodes.Where(ds => ds.code.Equals(discountCode.ToUpper())).FirstOrDefaultAsync();
+
+                if (discCodes != null)
+                {
+                    invoices.discount_code = discCodes.code;
+                    invoices.discount_percentage = discCodes.percentage;
+                }
+            }
 
             db.Invoices.Add(invoices);
             try
@@ -99,6 +116,10 @@ namespace api.Controllers
             {
                 Id = invoices.Id,
                 total = invoices.total,
+                tax = invoices.tax,
+                discount_code = invoices.discount_code,
+                discount_percentage = invoices.discount_percentage,
+                isFreeShipping = invoices.isFreeShipping,
                 UserID = invoices.UserID,
                 created_at = invoices.created_at,
                 updated_at = invoices.created_at,
@@ -139,6 +160,10 @@ namespace api.Controllers
                     Id = i.Id,
                     UserID = i.UserID,
                     total = i.total,
+                    discount_code = i.discount_code,
+                    discount_percentage = i.discount_percentage,
+                    isFreeShipping = i.isFreeShipping,
+                    tax = i.tax,
                     updated_at = i.updated_at,
                     created_at = i.created_at,
                     invoiceItems = invsItemsDTO
