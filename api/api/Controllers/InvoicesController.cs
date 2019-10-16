@@ -181,7 +181,7 @@ namespace api.Controllers
                     Id = i.Id,
                     InvoiceID = i.InvoiceID,
                     opt_price = i.opt_price,
-                    opt_weight = i.opt_price,
+                    opt_weight = i.opt_weight,
                     ProductOptionID = i.ProductOptionID,
                     prod_altitude_max = i.prod_altitude_max,
                     prod_altitude_min = i.prod_altitude_min,
