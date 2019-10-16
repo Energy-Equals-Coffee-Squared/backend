@@ -20,6 +20,26 @@ namespace api.Controllers
             db = context;
         }
 
+        // GET: api/Products/getMostSoldProduct
+        [Route("getMostSoldProduct")]
+        [HttpGet]
+        public async Task<ActionResult> getMostSoldProduct()
+        {
+            var query = db.InvoiceItems
+                  .GroupBy(g => g.ProductOptionID, c => c.quantity)
+                  .Select(g => new
+                  {
+                      ProdOptID = g.Key,
+                      Quantity = g.Sum()
+                  }).OrderByDescending(o => o.Quantity).FirstOrDefault();
+
+            var tempQuery = db.ProductOptions.Where(p => p.Id.Equals(query.ProdOptID)).FirstOrDefault();
+
+            var tempTempQuery = db.Products.Where(p => p.Id.Equals(tempQuery.ProductID)).FirstOrDefault();
+
+            return new JsonResult(new { Status = "success", prod = tempTempQuery.name + " " + tempQuery.weight + "g" });
+        }
+
         // GET: api/Products/getNumberOfProducts
         [Route("getNumberOfProducts")]
         [HttpGet]
