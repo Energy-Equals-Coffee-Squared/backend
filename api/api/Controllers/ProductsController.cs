@@ -53,8 +53,15 @@ namespace api.Controllers
                     orderProducts = prods.OrderByDescending(p=>p.name);
                     break;
                 default:
-
                     break;
+                case "price_asc":
+                    orderProducts = prods.OrderBy(p => p.min_price);
+                        break;
+                case "price_desc":
+                    orderProducts = prods.OrderByDescending(p => p.max_price);
+                    break;
+
+
             }
 
             var listProds = orderProducts.ToListAsync();
