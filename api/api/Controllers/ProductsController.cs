@@ -27,7 +27,9 @@ namespace api.Controllers
         {
             var query = db.Products.Where(p => p.isDeleted.Equals(false)).Count();
 
-            return new JsonResult(new { Status = "success", numProducts = query });
+            var optQuery = db.ProductOptions.Where(p => p.isDeleted.Equals(false)).Count();
+
+            return new JsonResult(new { Status = "success", numProducts = query, numProductOptions = optQuery });
         }
 
         // GET: api/Products
