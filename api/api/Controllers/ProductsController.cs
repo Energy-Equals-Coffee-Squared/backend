@@ -25,7 +25,7 @@ namespace api.Controllers
         public async Task<ActionResult<IEnumerable<ProductsDTO>>> GetProducts(String order = "default")
         {
             var prods = db.Products.Select(
-                p => new ProductsDTO{
+                p => new ProductsDTO {
                     Id = p.Id,
                     name = p.name,
                     desc = p.desc,
@@ -47,16 +47,16 @@ namespace api.Controllers
             switch (order)
             {
                 case "name_asc":
-                    orderProducts = prods.OrderBy(p=> p.name);
+                    orderProducts = prods.OrderBy(p => p.name);
                     break;
                 case "name_desc":
-                    orderProducts = prods.OrderByDescending(p=>p.name);
+                    orderProducts = prods.OrderByDescending(p => p.name);
                     break;
                 default:
                     break;
                 case "price_asc":
                     orderProducts = prods.OrderBy(p => p.min_price);
-                        break;
+                    break;
                 case "price_desc":
                     orderProducts = prods.OrderByDescending(p => p.max_price);
                     break;
@@ -96,7 +96,7 @@ namespace api.Controllers
                 ).ToListAsync();
 
             var products = await db.Products.Where(
-                p => p.Id.Equals(id) 
+                p => p.Id.Equals(id)
                 && p.isDeleted.Equals(false)
                 ).Select(
                     p => new ProductsDTO()
@@ -107,7 +107,7 @@ namespace api.Controllers
                         max_price = p.max_price,
                         min_price = p.min_price,
                         region = p.region,
-                        roast = p.roast,                        
+                        roast = p.roast,
                         altitude_max = p.altitude_max,
                         altitude_min = p.altitude_min,
                         bean_type = p.bean_type,
@@ -118,7 +118,7 @@ namespace api.Controllers
                     }
                 ).FirstOrDefaultAsync();
 
-            
+
             return products;
         }
 
@@ -127,7 +127,7 @@ namespace api.Controllers
         [Route("addProduct")]
         [HttpPost]
         public async Task<ActionResult<Products>> PostProducts(
-            string inName, string inDesc, 
+            string inName, string inDesc,
             string inRegion, string inRoast,
             int inAltitude_max, int inAltitude_min,
             string inBean_type, string inImage_url
@@ -138,7 +138,7 @@ namespace api.Controllers
                 name = inName,
                 desc = inDesc,
                 max_price = 0,
-                min_price= 0,
+                min_price = 0,
                 region = inRegion,
                 roast = inRoast,
                 altitude_max = inAltitude_max,
@@ -155,13 +155,70 @@ namespace api.Controllers
             {
                 await db.SaveChangesAsync();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return ValidationProblem();
             }
 
             return CreatedAtAction("GetProducts", new { id = products.Id }, products);
         }
+
+        [Route("EditProduct")]
+        [HttpPost]
+        public async Task<ActionResult<ProductsDTO>> editProduct(
+            int inId, string inName, string inDesc,
+            string inRegion, string inRoast,
+            int inAltitude_max, int inAltitude_min,
+            string inBean_type, string inImage_url
+        )
+        {
+            Products prod = await db.Products.FindAsync(inId);
+
+            prod.name = inName;
+            prod.desc = inDesc;
+            prod.max_price = 0;
+            prod.min_price = 0;
+            prod.region = inRegion;
+            prod.roast = inRoast;
+            prod.altitude_max = inAltitude_max;
+            prod.altitude_min = inAltitude_min;
+            prod.bean_type = inBean_type;
+            prod.image_url = inImage_url;
+            prod.created_at = DateTime.Now;
+            prod.updated_at = DateTime.Now;
+            prod.isDeleted = false;
+
+            db.Products.Update(prod);
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                return ValidationProblem();
+            }
+
+            ProductsDTO prodDTO = new ProductsDTO
+            {
+                Id = prod.Id,
+                name = prod.name,
+                bean_type = prod.bean_type,
+                altitude_max = prod.altitude_max,
+                altitude_min = prod.altitude_min, 
+                created_at = prod.created_at,
+                desc = prod.desc, 
+                image_url = prod.image_url,
+                max_price = prod.max_price,
+                min_price = prod.min_price,
+                region = prod.region,
+                roast = prod.roast ,
+                updated_at = prod.updated_at,
+                productOptions = null 
+            };
+
+            return prodDTO;
+        }
+
 
         private bool ProductsExists(int id)
         {
