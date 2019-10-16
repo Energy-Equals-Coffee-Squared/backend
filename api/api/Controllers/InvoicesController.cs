@@ -41,6 +41,16 @@ namespace api.Controllers
             return invoices;
         }
 
+        // GET: api/Invoices/getTotalMade
+        [Route("getTotalMade")]
+        [HttpGet]
+        public async Task<ActionResult> getTotalMade()
+        {
+            var query = db.InvoiceItems.Sum(i => i.quantity * i.opt_price);
+
+            return new JsonResult(new { Status = "success", totalMade = query });
+        }
+
         // GET: api/Invoices/getOrderSummary
         [Route("getOrderSummary")]
         [HttpGet]
