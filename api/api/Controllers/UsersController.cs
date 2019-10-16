@@ -75,6 +75,30 @@ namespace api.Controllers
             return new JsonResult(new { Status = "success", Message = users });
         }
 
+        // POST: api/Users/Login
+        [Route("getNumberOfSignups")]
+        [HttpGet]
+        public async Task<ActionResult<UsersDTO>> getNumberOfSignups(string options)
+        {
+            DateTime toDate = DateTime.Now.AddDays(-1);
+            switch (options)
+            {
+                case "day":
+                    toDate = DateTime.Now.AddDays(-1);
+                    break;
+                case "week":
+                    toDate = DateTime.Now.AddDays(-7);
+                    break;
+                case "month":
+                    toDate = DateTime.Now.AddMonths(-1);
+                    break;
+            }
+
+            var query = db.Users.Where(u => u.created_at >= toDate && u.created_at <= DateTime.Now).Count();
+
+            return new JsonResult(new { numSignups = query, option = options });
+        }
+
         // POST: api/Users/Register
         [Route("Register")]
         [HttpPost]
