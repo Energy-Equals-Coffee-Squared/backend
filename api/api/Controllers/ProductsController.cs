@@ -20,7 +20,7 @@ namespace api.Controllers
             db = context;
         }
 
-        // GET: api/Products
+        // GET: api/Products/getNumberOfProducts
         [Route("getNumberOfProducts")]
         [HttpGet]
         public async Task<ActionResult> getNumberOfProducts()
@@ -30,6 +30,16 @@ namespace api.Controllers
             var optQuery = db.ProductOptions.Where(p => p.isDeleted.Equals(false)).Count();
 
             return new JsonResult(new { Status = "success", numProducts = query, numProductOptions = optQuery });
+        }
+
+        // GET: api/Products/getNumberOfProductsSold
+        [Route("getNumberOfProductsSold")]
+        [HttpGet]
+        public async Task<ActionResult> getNumberOfProductsSold()
+        {
+            var query = db.InvoiceItems.Sum(i => i.quantity);
+
+            return new JsonResult(new { Status = "success", numProductsSold = query });
         }
 
         // GET: api/Products
