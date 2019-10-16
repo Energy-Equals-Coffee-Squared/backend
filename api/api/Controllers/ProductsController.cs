@@ -21,6 +21,16 @@ namespace api.Controllers
         }
 
         // GET: api/Products
+        [Route("getNumberOfProducts")]
+        [HttpGet]
+        public async Task<ActionResult> getNumberOfProducts()
+        {
+            var query = db.Products.Where(p => p.isDeleted.Equals(false)).Count();
+
+            return new JsonResult(new { Status = "success", numProducts = query });
+        }
+
+        // GET: api/Products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductsDTO>>> GetProducts(String order = "default")
         {
