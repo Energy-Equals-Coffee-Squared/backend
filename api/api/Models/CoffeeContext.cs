@@ -33,6 +33,24 @@ namespace api.Models
                     Id = 1, 
                     code = "15OFF",
                     percentage = 15
+                },
+                new DiscountCodes
+                {
+                    Id = 1,
+                    code = "SAVE50",
+                    percentage = 50
+                }
+            );
+            modelBuilder.Entity<Users>().HasData(
+                new Users
+                {
+                    Id = 1,
+                    username = "Anton",
+                    first_name = "Anton",
+                    last_name = "Roscher",
+
+                    //code = "15OFF",
+                    //percentage = 15
                 }
             );
             modelBuilder.Entity<Products>().HasData(

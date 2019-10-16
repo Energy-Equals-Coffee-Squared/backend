@@ -24,7 +24,7 @@ namespace api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductsDTO>>> GetProducts(String order = "default")
         {
-            var prods = db.Products.Select(
+            var prods = db.Products.Where(p => p.isDeleted.Equals(false)).Select(
                 p => new ProductsDTO {
                     Id = p.Id,
                     name = p.name,

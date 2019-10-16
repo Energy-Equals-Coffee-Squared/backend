@@ -96,9 +96,9 @@ namespace api.Controllers
 
             inv.tax += (total / 100) * taxRate;
 
-            if(inv.total >= 500 && inv.isFreeShipping == false)
+            if(inv.total >= 50000 && inv.isExpressShipping == false)
             {
-                inv.isFreeShipping = true;
+                inv.isExpressShipping = true;
             }
 
             db.Invoices.Update(inv);
@@ -190,7 +190,7 @@ namespace api.Controllers
                 UserID = invoice.UserID,
                 discount_code = invoice.discount_code,
                 discount_percentage = invoice.discount_percentage,
-                isFreeShipping = invoice.isFreeShipping,
+                isExpressShipping = invoice.isExpressShipping,
                 tax = invoice.tax,
                 created_at = invoice.created_at,
                 updated_at = invoice.created_at

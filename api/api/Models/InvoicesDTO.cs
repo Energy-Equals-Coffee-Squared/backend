@@ -11,7 +11,7 @@ namespace api.Models
         public int tax { get; set; }
         public string discount_code { get; set; }
         public int discount_percentage { get; set; }
-        public bool isFreeShipping { get; set; }
+        public bool isExpressShipping { get; set; }
         public int total { get; set; }
         public int UserID { get; set; }
         public List<InvoiceItemsDTO> invoiceItems { get; set; }

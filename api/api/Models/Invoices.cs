@@ -20,7 +20,7 @@ namespace api.Models
         public int discount_percentage { get; set; }
         [Required]
         [Column(TypeName = "tinyint")]
-        public bool isFreeShipping { get; set; }
+        public bool isExpressShipping { get; set; }
         [Required]
         [Column(TypeName = "int")]
         public int total { get; set; }
