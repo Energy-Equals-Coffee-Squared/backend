@@ -92,6 +92,8 @@ namespace api.Controllers
                 case "month":
                     toDate = DateTime.Now.AddMonths(-1);
                     break;
+                default:
+                    return new JsonResult(new { Status = "error", Message = "Incorrect option of: "+ options });
             }
 
             var query = db.Users.Where(u => u.created_at >= toDate && u.created_at <= DateTime.Now).Count();

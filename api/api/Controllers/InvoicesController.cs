@@ -41,6 +41,24 @@ namespace api.Controllers
             return invoices;
         }
 
+        // GET: api/Invoices/getOrderSummary
+        [Route("getOrderSummary")]
+        [HttpGet]
+        public async Task<ActionResult> getOrderSummary()
+        {
+            try
+            {
+                var query = db.Invoices.Where(i => i.created_at >= DateTime.Now.AddDays(-1)).Count();
+
+                return new JsonResult(new { Status = "success", numOrders = query });
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(new { Status = "error", Message = "a problem has occured" });
+            }
+
+        }
+
         // POST: api/Invoices/getInvoice
         [Route("getInvoice")]
         [HttpPost]
