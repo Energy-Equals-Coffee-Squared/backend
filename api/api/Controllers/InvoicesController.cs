@@ -46,17 +46,12 @@ namespace api.Controllers
         [HttpGet]
         public async Task<ActionResult> averageSpentPerPerson()
         {
-            //var query = db.Invoices
-            //      .GroupBy(g => g.UserID, c => c.total)
-            //      .Select(g => new
-            //      {
-            //          Average = g.Average()
-            //      });
+            
 
 
             var query = db.Invoices.Average(c => c.total);
 
-            return new JsonResult(new { Status = "success", averageSpent = query });
+            return new JsonResult(new { Status = "success", averageSpent = (int)query });
         }
 
         // GET: api/Invoices/getTotalMade
