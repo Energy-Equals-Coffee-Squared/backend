@@ -41,21 +41,23 @@ namespace api.Controllers
             return invoices;
         }
 
-        //// GET: api/Invoices/averageSpentPerPerson
-        //[Route("averageSpentPerPerson")]
-        //[HttpGet]
-        //public async Task<ActionResult> averageSpentPerPerson()
-        //{
-        //    var query = db.User
-        //          .GroupBy(g => g., c => c.Score)
-        //          .Select(g => new
-        //          {
-        //              StudentId = g.Key,
-        //              Average = g.Average()
-        //          }); ;
+        // GET: api/Invoices/averageSpentPerPerson
+        [Route("averageSpentPerPerson")]
+        [HttpGet]
+        public async Task<ActionResult> averageSpentPerPerson()
+        {
+            //var query = db.Invoices
+            //      .GroupBy(g => g.UserID, c => c.total)
+            //      .Select(g => new
+            //      {
+            //          Average = g.Average()
+            //      });
 
-        //    return new JsonResult(new { Status = "success", totalMade = query });
-        //}
+
+            var query = db.Invoices.Average(c => c.total);
+
+            return new JsonResult(new { Status = "success", averageSpent = query });
+        }
 
         // GET: api/Invoices/getTotalMade
         [Route("getTotalMade")]
