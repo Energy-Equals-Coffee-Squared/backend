@@ -46,10 +46,7 @@ namespace api.Controllers
         [HttpGet]
         public async Task<ActionResult> averageSpentPerPerson()
         {
-            
-
-
-            var query = db.Invoices.Average(c => c.total);
+            var query = db.Invoices.Average(c => c.total_paid);
 
             return new JsonResult(new { Status = "success", averageSpent = (int)query });
         }
@@ -59,7 +56,7 @@ namespace api.Controllers
         [HttpGet]
         public async Task<ActionResult> getTotalMade()
         {
-            var query = db.Invoices.Sum(i => i.total);
+            var query = db.Invoices.Sum(i => i.total_paid);
 
             return new JsonResult(new { Status = "success", totalMade = query });
         }
@@ -94,9 +91,10 @@ namespace api.Controllers
                     UserID = i.UserID,
                     discount_code = i.discount_code,
                     discount_percentage = i.discount_percentage,
-                    isFreeShipping = i.isFreeShipping,
+                    shipping_fee = i.shipping_fee,
                     tax = i.tax,
-                    total = i.total,
+                    total_paid = i.total_paid,
+                    total_before_discount = i.total_before_discount,
                     updated_at = i.updated_at,
                     created_at = i.created_at,
                     invoiceItems = null
@@ -126,8 +124,9 @@ namespace api.Controllers
                 User = user,
                 UserID = user.Id,
                 tax = 0,
-                total = 0,
-                isFreeShipping = false,
+                total_paid = 0,
+                total_before_discount = 0,
+                shipping_fee = 0,
                 created_at = DateTime.Now,
                 updated_at = DateTime.Now
             };
@@ -156,11 +155,12 @@ namespace api.Controllers
             InvoicesDTO invcDTO = new InvoicesDTO
             {
                 Id = invoices.Id,
-                total = invoices.total,
+                total_paid = invoices.total_paid,
+                total_before_discount = invoices.total_before_discount,
                 tax = invoices.tax,
                 discount_code = invoices.discount_code,
                 discount_percentage = invoices.discount_percentage,
-                isFreeShipping = invoices.isFreeShipping,
+                shipping_fee = invoices.shipping_fee,
                 UserID = invoices.UserID,
                 created_at = invoices.created_at,
                 updated_at = invoices.created_at,
@@ -200,10 +200,11 @@ namespace api.Controllers
                 {
                     Id = i.Id,
                     UserID = i.UserID,
-                    total = i.total,
+                    total_paid = i.total_paid,
+                    total_before_discount = i.total_before_discount,
                     discount_code = i.discount_code,
                     discount_percentage = i.discount_percentage,
-                    isFreeShipping = i.isFreeShipping,
+                    shipping_fee = i.shipping_fee,
                     tax = i.tax,
                     updated_at = i.updated_at,
                     created_at = i.created_at,

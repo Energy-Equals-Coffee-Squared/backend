@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using api.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,12 @@ namespace api.Models
         public DbSet<InvoiceItems> InvoiceItems { get; set; }
 
         public DbSet<DiscountCodes> DiscountCodes { get; set; }
+
+        public DbSet<Cart> Cart { get; set; }
+
+        public DbSet<CartItems> CartItems { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -449,6 +456,7 @@ namespace api.Models
                 {
                     Id = 1,
                     price = 8000,
+                    tax_amount = Tax.CalcTax(8000),
                     weight = 250,
                     quantity = 15,
                     created_at = DateTime.Now,
@@ -461,6 +469,7 @@ namespace api.Models
                  {
                      Id = 2,
                      price = 15000,
+                     tax_amount = Tax.CalcTax(15000),
                      weight = 500,
                      quantity = 15,
                      created_at = DateTime.Now,
@@ -473,6 +482,7 @@ namespace api.Models
                  {
                      Id = 3,
                      price = 28000,
+                     tax_amount = Tax.CalcTax(28000),
                      weight = 1000,
                      quantity = 15,
                      created_at = DateTime.Now,
@@ -486,6 +496,7 @@ namespace api.Models
                  {
                      Id = 4,
                      price = 9000,
+                     tax_amount = Tax.CalcTax(9000),
                      weight = 250,
                      quantity = 10,
                      created_at = DateTime.Now,
@@ -498,6 +509,7 @@ namespace api.Models
                  {
                      Id = 5,
                      price = 15000,
+                     tax_amount = Tax.CalcTax(15000),
                      weight = 500,
                      quantity = 11,
                      created_at = DateTime.Now,
@@ -510,6 +522,7 @@ namespace api.Models
                  {
                      Id = 6,
                      price = 31000,
+                     tax_amount = Tax.CalcTax(31000),
                      weight = 1000,
                      quantity = 12,
                      created_at = DateTime.Now,
@@ -523,6 +536,7 @@ namespace api.Models
                  {
                      Id = 7,
                      price = 10000,
+                     tax_amount = Tax.CalcTax(10000),
                      weight = 250,
                      quantity = 13,
                      created_at = DateTime.Now,
@@ -535,6 +549,7 @@ namespace api.Models
                  {
                      Id = 8,
                      price = 22000,
+                     tax_amount = Tax.CalcTax(22000),
                      weight = 500,
                      quantity = 25,
                      created_at = DateTime.Now,
@@ -547,6 +562,7 @@ namespace api.Models
                  {
                      Id = 9,
                      price = 32000,
+                     tax_amount = Tax.CalcTax(32000),
                      weight = 1000,
                      quantity = 5,
                      created_at = DateTime.Now,
@@ -560,6 +576,7 @@ namespace api.Models
                  {
                      Id = 10,
                      price = 6000,
+                     tax_amount = Tax.CalcTax(6000),
                      weight = 250,
                      quantity = 13,
                      created_at = DateTime.Now,
@@ -572,6 +589,7 @@ namespace api.Models
                  {
                      Id = 11,
                      price = 14000,
+                     tax_amount = Tax.CalcTax(14000),
                      weight = 500,
                      quantity = 35,
                      created_at = DateTime.Now,
@@ -584,6 +602,7 @@ namespace api.Models
                  {
                      Id = 12,
                      price = 25000,
+                     tax_amount = Tax.CalcTax(25000),
                      weight = 1000,
                      quantity = 19,
                      created_at = DateTime.Now,
@@ -597,6 +616,7 @@ namespace api.Models
                  {
                      Id = 13,
                      price = 8000,
+                     tax_amount = Tax.CalcTax(8000),
                      weight = 250,
                      quantity = 16,
                      created_at = DateTime.Now,
@@ -609,6 +629,7 @@ namespace api.Models
                  {
                      Id = 14,
                      price = 12000,
+                     tax_amount = Tax.CalcTax(12000),
                      weight = 500,
                      quantity = 17,
                      created_at = DateTime.Now,
@@ -621,6 +642,7 @@ namespace api.Models
                  {
                      Id = 15,
                      price = 16000,
+                     tax_amount = Tax.CalcTax(16000),
                      weight = 1000,
                      quantity = 11,
                      created_at = DateTime.Now,
@@ -634,6 +656,7 @@ namespace api.Models
                  {
                      Id = 16,
                      price = 15000,
+                     tax_amount = Tax.CalcTax(15000),
                      weight = 250,
                      quantity = 33,
                      created_at = DateTime.Now,
@@ -646,6 +669,7 @@ namespace api.Models
                  {
                      Id = 17,
                      price = 20000,
+                     tax_amount = Tax.CalcTax(20000),
                      weight = 500,
                      quantity = 25,
                      created_at = DateTime.Now,
@@ -658,6 +682,7 @@ namespace api.Models
                  {
                      Id = 18,
                      price = 35000,
+                     tax_amount = Tax.CalcTax(35000),
                      weight = 1000,
                      quantity = 19,
                      created_at = DateTime.Now,
@@ -671,6 +696,7 @@ namespace api.Models
                  {
                      Id = 19,
                      price = 10000,
+                     tax_amount = Tax.CalcTax(10000),
                      weight = 250,
                      quantity = 16,
                      created_at = DateTime.Now,
@@ -683,6 +709,7 @@ namespace api.Models
                  {
                      Id = 20,
                      price = 19000,
+                     tax_amount = Tax.CalcTax(19000),
                      weight = 500,
                      quantity = 15,
                      created_at = DateTime.Now,
@@ -695,6 +722,7 @@ namespace api.Models
                  {
                      Id = 21,
                      price = 29000,
+                     tax_amount = Tax.CalcTax(29000),
                      weight = 1000,
                      quantity = 17,
                      created_at = DateTime.Now,
@@ -708,6 +736,7 @@ namespace api.Models
                  {
                      Id = 22,
                      price = 10000,
+                     tax_amount = Tax.CalcTax(10000),
                      weight = 250,
                      quantity = 17,
                      created_at = DateTime.Now,
@@ -720,6 +749,7 @@ namespace api.Models
                  {
                      Id = 23,
                      price = 13500,
+                     tax_amount = Tax.CalcTax(13500),
                      weight = 500,
                      quantity = 13,
                      created_at = DateTime.Now,
@@ -732,6 +762,7 @@ namespace api.Models
                  {
                      Id = 24,
                      price = 17000,
+                     tax_amount = Tax.CalcTax(17000),
                      weight = 1000,
                      quantity = 25,
                      created_at = DateTime.Now,
@@ -745,6 +776,7 @@ namespace api.Models
                  {
                      Id = 25,
                      price = 18000,
+                     tax_amount = Tax.CalcTax(18000),
                      weight = 250,
                      quantity = 35,
                      created_at = DateTime.Now,
@@ -757,6 +789,7 @@ namespace api.Models
                  {
                      Id = 26,
                      price = 26000,
+                     tax_amount = Tax.CalcTax(26000),
                      weight = 500,
                      quantity = 11,
                      created_at = DateTime.Now,
@@ -769,6 +802,7 @@ namespace api.Models
                  {
                      Id = 27,
                      price = 32000,
+                     tax_amount = Tax.CalcTax(32000),
                      weight = 1000,
                      quantity = 9,
                      created_at = DateTime.Now,
@@ -782,6 +816,7 @@ namespace api.Models
                  {
                      Id = 28,
                      price = 10000,
+                     tax_amount = Tax.CalcTax(10000),
                      weight = 250,
                      quantity = 15,
                      created_at = DateTime.Now,
@@ -794,6 +829,7 @@ namespace api.Models
                  {
                      Id = 29,
                      price = 19000,
+                     tax_amount = Tax.CalcTax(19000),
                      weight = 500,
                      quantity = 21,
                      created_at = DateTime.Now,
@@ -806,6 +842,7 @@ namespace api.Models
                  {
                      Id = 30,
                      price = 36000,
+                     tax_amount = Tax.CalcTax(36000),
                      weight = 1000,
                      quantity = 11,
                      created_at = DateTime.Now,
@@ -819,6 +856,7 @@ namespace api.Models
                  {
                      Id = 31,
                      price = 8000,
+                     tax_amount = Tax.CalcTax(8000),
                      weight = 250,
                      quantity = 7,
                      created_at = DateTime.Now,
@@ -831,6 +869,7 @@ namespace api.Models
                  {
                      Id = 32,
                      price = 15000,
+                     tax_amount = Tax.CalcTax(15000),
                      weight = 500,
                      quantity = 13,
                      created_at = DateTime.Now,
@@ -843,6 +882,7 @@ namespace api.Models
                  {
                      Id = 33,
                      price = 28000,
+                     tax_amount = Tax.CalcTax(28000),
                      weight = 1000,
                      quantity = 33,
                      created_at = DateTime.Now,
@@ -856,6 +896,7 @@ namespace api.Models
                  {
                      Id = 34,
                      price = 8000,
+                     tax_amount = Tax.CalcTax(8000),
                      weight = 250,
                      quantity = 6,
                      created_at = DateTime.Now,
@@ -868,6 +909,7 @@ namespace api.Models
                  {
                      Id = 35,
                      price = 15000,
+                     tax_amount = Tax.CalcTax(15000),
                      weight = 500,
                      quantity = 7,
                      created_at = DateTime.Now,
@@ -880,6 +922,7 @@ namespace api.Models
                  {
                      Id = 36,
                      price = 28000,
+                     tax_amount = Tax.CalcTax(28000),
                      weight = 1000,
                      quantity = 8,
                      created_at = DateTime.Now,
@@ -893,6 +936,7 @@ namespace api.Models
                  {
                      Id = 37,
                      price = 8000,
+                     tax_amount = Tax.CalcTax(8000),
                      weight = 250,
                      quantity = 22,
                      created_at = DateTime.Now,
@@ -905,6 +949,7 @@ namespace api.Models
                  {
                      Id = 38,
                      price = 15000,
+                     tax_amount = Tax.CalcTax(15000),
                      weight = 500,
                      quantity = 11,
                      created_at = DateTime.Now,
@@ -917,6 +962,7 @@ namespace api.Models
                  {
                      Id = 39,
                      price = 28000,
+                     tax_amount = Tax.CalcTax(28000),
                      weight = 1000,
                      quantity = 44,
                      created_at = DateTime.Now,
@@ -930,6 +976,7 @@ namespace api.Models
                  {
                      Id = 40,
                      price = 12500,
+                     tax_amount = Tax.CalcTax(12500),
                      weight = 250,
                      quantity = 15,
                      created_at = DateTime.Now,
@@ -942,6 +989,7 @@ namespace api.Models
                  {
                      Id = 41,
                      price = 18000,
+                     tax_amount = Tax.CalcTax(18000),
                      weight = 500,
                      quantity = 16,
                      created_at = DateTime.Now,
@@ -954,6 +1002,7 @@ namespace api.Models
                  {
                      Id = 42,
                      price = 26000,
+                     tax_amount = Tax.CalcTax(26000),
                      weight = 1000,
                      quantity = 17,
                      created_at = DateTime.Now,
@@ -967,6 +1016,7 @@ namespace api.Models
                  {
                      Id = 43,
                      price = 16000,
+                     tax_amount = Tax.CalcTax(16000),
                      weight = 250,
                      quantity = 12,
                      created_at = DateTime.Now,
@@ -979,6 +1029,7 @@ namespace api.Models
                  {
                      Id = 44,
                      price = 32000,
+                     tax_amount = Tax.CalcTax(32000),
                      weight = 500,
                      quantity = 22,
                      created_at = DateTime.Now,
@@ -991,6 +1042,7 @@ namespace api.Models
                  {
                      Id = 45,
                      price = 60000,
+                     tax_amount = Tax.CalcTax(60000),
                      weight = 1000,
                      quantity = 26,
                      created_at = DateTime.Now,
@@ -1004,6 +1056,7 @@ namespace api.Models
                  {
                      Id = 46,
                      price = 12500,
+                     tax_amount = Tax.CalcTax(12500),
                      weight = 250,
                      quantity = 4,
                      created_at = DateTime.Now,
@@ -1016,6 +1069,7 @@ namespace api.Models
                  {
                      Id = 47,
                      price = 17000,
+                     tax_amount = Tax.CalcTax(17000),
                      weight = 500,
                      quantity = 22,
                      created_at = DateTime.Now,
@@ -1028,6 +1082,7 @@ namespace api.Models
                  {
                      Id = 48,
                      price = 30000,
+                     tax_amount = Tax.CalcTax(30000),
                      weight = 1000,
                      quantity = 9,
                      created_at = DateTime.Now,
@@ -1041,6 +1096,7 @@ namespace api.Models
                  {
                      Id = 49,
                      price = 22000,
+                     tax_amount = Tax.CalcTax(22000),
                      weight = 250,
                      quantity = 21,
                      created_at = DateTime.Now,
@@ -1053,6 +1109,7 @@ namespace api.Models
                  {
                      Id = 50,
                      price = 31000,
+                     tax_amount = Tax.CalcTax(31000),
                      weight = 500,
                      quantity = 11,
                      created_at = DateTime.Now,
@@ -1065,6 +1122,7 @@ namespace api.Models
                  {
                      Id = 51,
                      price = 45500,
+                     tax_amount = Tax.CalcTax(45500),
                      weight = 1000,
                      quantity = 11,
                      created_at = DateTime.Now,
@@ -1078,6 +1136,7 @@ namespace api.Models
                  {
                      Id = 52,
                      price = 15100,
+                     tax_amount = Tax.CalcTax(15100),
                      weight = 250,
                      quantity = 22,
                      created_at = DateTime.Now,
@@ -1090,6 +1149,7 @@ namespace api.Models
                  {
                      Id = 53,
                      price = 18000,
+                     tax_amount = Tax.CalcTax(18000),
                      weight = 500,
                      quantity = 12,
                      created_at = DateTime.Now,
@@ -1102,6 +1162,7 @@ namespace api.Models
                  {
                      Id = 54,
                      price = 21200,
+                     tax_amount = Tax.CalcTax(21200),
                      weight = 1000,
                      quantity = 32,
                      created_at = DateTime.Now,
@@ -1115,6 +1176,7 @@ namespace api.Models
                  {
                      Id = 55,
                      price = 32000,
+                     tax_amount = Tax.CalcTax(32000),
                      weight = 250,
                      quantity = 21,
                      created_at = DateTime.Now,
@@ -1127,6 +1189,7 @@ namespace api.Models
                  {
                      Id = 56,
                      price = 40000,
+                     tax_amount = Tax.CalcTax(40000),
                      weight = 500,
                      quantity = 11,
                      created_at = DateTime.Now,
@@ -1139,6 +1202,7 @@ namespace api.Models
                  {
                      Id = 57,
                      price = 50000,
+                     tax_amount = Tax.CalcTax(50000),
                      weight = 1000,
                      quantity = 15,
                      created_at = DateTime.Now,
@@ -1152,6 +1216,7 @@ namespace api.Models
                  {
                      Id = 58,
                      price = 12000,
+                     tax_amount = Tax.CalcTax(12000),
                      weight = 250,
                      quantity = 44,
                      created_at = DateTime.Now,
@@ -1164,6 +1229,7 @@ namespace api.Models
                  {
                      Id = 59,
                      price = 20000,
+                     tax_amount = Tax.CalcTax(20000),
                      weight = 500,
                      quantity = 15,
                      created_at = DateTime.Now,
@@ -1176,6 +1242,7 @@ namespace api.Models
                  {
                      Id = 60,
                      price = 30000,
+                     tax_amount = Tax.CalcTax(30000),
                      weight = 1000,
                      quantity = 21,
                      created_at = DateTime.Now,
@@ -1189,6 +1256,7 @@ namespace api.Models
                  {
                      Id = 61,
                      price = 8000,
+                     tax_amount = Tax.CalcTax(8000),
                      weight = 250,
                      quantity = 11,
                      created_at = DateTime.Now,
@@ -1201,6 +1269,7 @@ namespace api.Models
                  {
                      Id = 62,
                      price = 16000,
+                     tax_amount = Tax.CalcTax(16000),
                      weight = 500,
                      quantity = 1,
                      created_at = DateTime.Now,
@@ -1213,6 +1282,7 @@ namespace api.Models
                  {
                      Id = 63,
                      price = 28000,
+                     tax_amount = Tax.CalcTax(28000),
                      weight = 1000,
                      quantity = 2,
                      created_at = DateTime.Now,

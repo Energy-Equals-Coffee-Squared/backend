@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.Models;
+using api.Helpers;
 
 namespace api.Controllers
 {
@@ -82,24 +83,17 @@ namespace api.Controllers
 
             var total = optPrice * qty;
 
-            var discPercent = (double) inv.discount_percentage;
+            inv.total_before_discount += total;
 
-            double discountRate = ((double) discPercent) / ((double) 100);
+            total = Discount.CalcDiscountAmount(total, inv.discount_percentage);
 
-            var calcDiscountRate = total * discountRate;
-
-            total = total - (int)calcDiscountRate;
-
-            inv.total += total;
+            inv.total_paid += total;
 
             var taxRate = 15;
 
             inv.tax += (total / 100) * taxRate;
 
-            if(inv.total >= 500 && inv.isFreeShipping == false)
-            {
-                inv.isFreeShipping = true;
-            }
+            inv.shipping_fee = Shipping.CalcShippingFee(total);
 
             db.Invoices.Update(inv);
             try
@@ -186,11 +180,12 @@ namespace api.Controllers
             InvoicesDTO invcDTO = new InvoicesDTO
             {
                 Id = invoice.Id,
-                total = invoice.total,
+                total_paid = invoice.total_paid,
+                total_before_discount = invoice.total_before_discount,
                 UserID = invoice.UserID,
                 discount_code = invoice.discount_code,
                 discount_percentage = invoice.discount_percentage,
-                isFreeShipping = invoice.isFreeShipping,
+                shipping_fee = invoice.shipping_fee,
                 tax = invoice.tax,
                 created_at = invoice.created_at,
                 updated_at = invoice.created_at

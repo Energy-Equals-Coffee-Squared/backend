@@ -7,29 +7,16 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class Invoices
+    public class Cart
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        [Column(TypeName = "int")]
-        public int tax { get; set; }
-        [Column(TypeName = "varchar(255)")]
-        public string discount_code { get; set; }
-        [Column(TypeName = "int")]
-        public int discount_percentage { get; set; }
+        [Column(TypeName = "tinyint")]
+        public bool shipping_fee { get; set; }
         [Required]
         [Column(TypeName = "int")]
-        public int shipping_fee { get; set; }
-
-        [Required]
-        [Column(TypeName = "int")]
-        public int total_before_discount { get; set; }
-
-        [Required]
-        [Column(TypeName = "int")]
-        public int total_paid { get; set; }
-
+        public int total { get; set; }
         [Required]
         [Column(TypeName = "int")]
         public int UserID { get; set; }
@@ -40,6 +27,5 @@ namespace api.Models
         [Required]
         [Column(TypeName = "datetime")]
         public DateTime updated_at { get; set; }
-
     }
 }

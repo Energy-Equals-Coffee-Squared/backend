@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class InvoiceItems
+    public class CartItems
     {
         [Key]
         public int Id { get; set; }
         [Required]
         [Column(TypeName = "int")]
-        public int InvoiceID { get; set; }
-        public Invoices Invoice { get; set; }
+        public int CartID { get; set; }
+        public Cart Cart { get; set; }
 
         [Required]
         [Column(TypeName = "int")]

@@ -9,6 +9,7 @@ namespace api.Models
     {
         public int Id { get; set; }
         public int price { get; set; }
+        public int tax_amount { get; set; }
         public int weight { get; set; }
         public int quantity { get; set; }
         public DateTime created_at { get; set; }

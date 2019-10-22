@@ -15,6 +15,8 @@ namespace api.Models
         [Required]
         [Column(TypeName = "int")]
         public int price { get; set; }
+        [Column(TypeName = "int")]
+        public int tax_amount { get; set; }
         [Required]
         [Column(TypeName = "int")]
         public int weight { get; set; }
