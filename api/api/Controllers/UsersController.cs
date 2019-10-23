@@ -25,7 +25,7 @@ namespace api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
         {
-            return await db.Users.ToListAsync();
+            return await db.Users.Where(u => u.isDelted.Equals(false)).ToListAsync();
         }
 
         // GET: api/Users/5
