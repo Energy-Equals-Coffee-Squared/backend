@@ -81,24 +81,143 @@ namespace api.Controllers
         public async Task<ActionResult<UsersDTO>> getNumberOfSignups(string options)
         {
             DateTime toDate = DateTime.Now.AddDays(-1);
+            //DateTime  One_Day = DateTime.Now.AddDays(-1);
+            //DateTime  Two_Days = DateTime.Now.AddDays(-2);
+            //DateTime  Three_Days = DateTime.Now.AddDays(-3);
+            //DateTime  Four_Days = DateTime.Now.AddDays(-4);
+            //DateTime  Five_Days = DateTime.Now.AddDays(-5);
+            //DateTime  Six_Days = DateTime.Now.AddDays(-6);
+            //DateTime  Seven_Days = DateTime.Now.AddDays(-7);
+
             switch (options)
             {
                 case "day":
                     toDate = DateTime.Now.AddDays(-1);
+                    DateTime One_Day = DateTime.Now.AddDays(-1);
+                    DateTime Two_Days = DateTime.Now.AddDays(-2);
+                    DateTime Three_Days = DateTime.Now.AddDays(-3);
+                    DateTime Four_Days = DateTime.Now.AddDays(-4);
+                    DateTime Five_Days = DateTime.Now.AddDays(-5);
+                    DateTime Six_Days = DateTime.Now.AddDays(-6);
+                    DateTime Seven_Days = DateTime.Now.AddDays(-7);
+
+                    var query = db.Users.Where(u => u.created_at >= toDate && u.created_at <= DateTime.Now).Count();
+                    var queryY = db.Users.Where(u => u.created_at >= One_Day && u.created_at <= DateTime.Now).Count();
+                    var queryTwo = db.Users.Where(u => u.created_at >= Two_Days && u.created_at <= One_Day).Count();
+                    var queryThree = db.Users.Where(u => u.created_at >= Three_Days && u.created_at <= Two_Days).Count();
+                    var queryFour = db.Users.Where(u => u.created_at >= Four_Days && u.created_at <= Three_Days).Count();
+                    var queryFive = db.Users.Where(u => u.created_at >= Five_Days && u.created_at <= Four_Days).Count();
+                    var querySix = db.Users.Where(u => u.created_at >= Six_Days && u.created_at <= Five_Days).Count();
+                    var querySeven = db.Users.Where(u => u.created_at >= Seven_Days && u.created_at <= Six_Days).Count();
+
+                    return new JsonResult(new
+                    {
+                        numSignups = new
+                        {
+                            one = queryY,
+                            two = queryTwo,
+                            three = queryThree,
+                            four = queryFour,
+                            five = queryFive,
+                            six = querySix,
+                            seven = querySeven
+                        },
+                        option = options
+                    });
                     break;
+
                 case "week":
                     toDate = DateTime.Now.AddDays(-7);
+                    DateTime WeekOne = DateTime.Now.AddDays(-7);
+                    DateTime WeekTwo = DateTime.Now.AddDays(-14);
+                    DateTime WeekThree = DateTime.Now.AddDays(-21);
+                    DateTime WeekFour = DateTime.Now.AddDays(-28);
+        
+                    var queryWY = db.Users.Where(u => u.created_at >= WeekOne && u.created_at <= DateTime.Now).Count();
+                    var queryWTwo = db.Users.Where(u => u.created_at >= WeekTwo && u.created_at <= WeekOne).Count();
+                    var queryWThree = db.Users.Where(u => u.created_at >= WeekThree && u.created_at <= WeekTwo).Count();
+                    var queryWFour = db.Users.Where(u => u.created_at >= WeekFour && u.created_at <= WeekThree).Count();
+
+
+                    return new JsonResult(new
+                    {
+                        numSignups = new
+                        {
+                            Week_One = queryWY,
+                            Week_Two = queryWTwo,
+                            Week_Three = queryWThree,
+                            Week_Four = queryWFour,
+              
+                        },
+                        option = options
+                    });
+
                     break;
                 case "month":
                     toDate = DateTime.Now.AddMonths(-1);
+                    DateTime Month_one = DateTime.Now.AddMonths(-1);
+                    DateTime Month_Two = DateTime.Now.AddMonths(-2);
+                    DateTime Month_Three = DateTime.Now.AddMonths(-3);
+                    DateTime Month_Four = DateTime.Now.AddMonths(-4);
+                    DateTime Month_Five = DateTime.Now.AddMonths(-5);
+                    DateTime Month_Six = DateTime.Now.AddMonths(-6);
+                    DateTime Month_Seven = DateTime.Now.AddMonths(-7);
+                    DateTime Month_Eight = DateTime.Now.AddMonths(-8);
+                    DateTime Month_Nine = DateTime.Now.AddMonths(-9);
+                    DateTime Month_Ten = DateTime.Now.AddMonths(-10);
+                    DateTime Month_Eleven = DateTime.Now.AddMonths(-11);
+                    DateTime Month_Twelve = DateTime.Now.AddMonths(-12);
+
+                    var MO = db.Users.Where(u => u.created_at >= Month_one && u.created_at <= DateTime.Now).Count();
+                    var MT= db.Users.Where(u => u.created_at >= Month_one && u.created_at <= DateTime.Now).Count();
+                    var MTH = db.Users.Where(u => u.created_at >= Month_Two && u.created_at <= Month_one).Count();
+                    var MF = db.Users.Where(u => u.created_at >= Month_Three && u.created_at <= Month_Two).Count();
+                    var MFV= db.Users.Where(u => u.created_at >= Month_Four && u.created_at <= Month_Three).Count();
+                    var MS = db.Users.Where(u => u.created_at >= Month_Five && u.created_at <= Month_Four).Count();
+                    var MSE = db.Users.Where(u => u.created_at >= Month_Six && u.created_at <= Month_Five).Count();
+                    var ME = db.Users.Where(u => u.created_at >= Month_Seven && u.created_at <= Month_Six).Count();
+                    var MN = db.Users.Where(u => u.created_at >= Month_Eight && u.created_at <= Month_Seven).Count();
+                    var MTE = db.Users.Where(u => u.created_at >= Month_Nine && u.created_at <= Month_Eight).Count();
+                    var MEL= db.Users.Where(u => u.created_at >= Month_Eleven && u.created_at <= Month_Nine).Count();
+                    var MTW = db.Users.Where(u => u.created_at >= Month_Twelve && u.created_at <= Month_Eleven).Count();
+
+                    return new JsonResult(new
+                    {
+                        numSignups = new
+                        {
+                            Month_One = MO,
+                            Month_Two = MT,
+                            Month_Three = MTH,
+                            Month_Four = MF,
+                            Month_Five = MFV,
+                            Month_Six = MS,
+                            Month_Seven = MSE,
+                            Month_Eight = ME,
+                            Month_Nine = MN,
+                            Month_Ten = MT,
+                            Month_Eleven = MEL,
+                            Month_Twelve = MTW,
+
+                        },
+                        option = options
+                    });
+
                     break;
                 default:
                     return new JsonResult(new { Status = "error", Message = "Incorrect option of: "+ options });
             }
 
-            var query = db.Users.Where(u => u.created_at >= toDate && u.created_at <= DateTime.Now).Count();
+            //var query = db.Users.Where(u => u.created_at >= toDate && u.created_at <= DateTime.Now).Count() ;
+            //var queryY = db.Users.Where(u => u.created_at >= One_Day && u.created_at <= DateTime.Now).Count();
+            //var queryTwo = db.Users.Where(u => u.created_at >= Two_Days && u.created_at <= One_Day).Count();
+            //var queryThree = db.Users.Where(u => u.created_at >= Three_Days && u.created_at <= Two_Days).Count();
+            //var queryFour = db.Users.Where(u => u.created_at >= Four_Days && u.created_at <= Three_Days).Count();
+            //var queryFive = db.Users.Where(u => u.created_at >= Five_Days && u.created_at <= Four_Days).Count();
+            //var querySix = db.Users.Where(u => u.created_at >= Six_Days && u.created_at <= Five_Days).Count();
+            //var querySeven = db.Users.Where(u => u.created_at >= Seven_Days && u.created_at <= Six_Days).Count();
 
-            return new JsonResult(new { numSignups = query, option = options });
+            //return new JsonResult(new { numSignups = new { one = queryY,two = queryTwo, three = queryThree,
+            //four = queryFour, five = queryFive, six = querySix, seven = querySeven}, option = options });
         }
 
         // POST: api/Users/Register
