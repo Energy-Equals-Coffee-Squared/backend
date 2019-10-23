@@ -13,93 +13,138 @@ namespace api.Controllers
     [ApiController]
     public class CartItemsController : ControllerBase
     {
-        private readonly CoffeeContext _context;
+        private readonly CoffeeContext db;
 
         public CartItemsController(CoffeeContext context)
         {
-            _context = context;
+            db = context;
         }
 
-        // GET: api/CartItems
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<CartItems>>> GetCartItems()
+        private List<CartItems> getCartItems(int cartID)
         {
-            return await _context.CartItems.ToListAsync();
-        }
-
-        // GET: api/CartItems/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<CartItems>> GetCartItems(int id)
-        {
-            var cartItems = await _context.CartItems.FindAsync(id);
-
-            if (cartItems == null)
+            List<CartItems> cartItems = db.CartItems.Where(c => c.CartID.Equals(cartID)).ToList();
+            foreach(CartItems item in cartItems)
             {
-                return NotFound();
-            }
+                ProductOptions prodOpt = db.ProductOptions.Find(item.ProductOptionID);
+                Products prod = db.Products.Find(prodOpt.ProductID);
 
+                prodOpt.Product = prod;
+                item.ProductOption = prodOpt;
+            };
             return cartItems;
         }
 
-        // PUT: api/CartItems/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCartItems(int id, CartItems cartItems)
+        // POST: api/CartItems/getCart
+        [Route("getCart")]
+        [HttpPost]
+        public async Task<ActionResult<CartDTO>> getItemsFromCart(int inUserID)
         {
-            if (id != cartItems.Id)
+            Cart cart = await db.Cart.Where(c => c.UserID.Equals(inUserID)).FirstOrDefaultAsync();
+
+            List<CartItems> cartItems = getCartItems(cart.Id);
+
+            CartDTO cartDTO = new CartDTO
             {
-                return BadRequest();
+                Id = cart.Id,
+                options = cartItems,
+                created_at = cart.created_at,
+                updated_at = cart.updated_at
+            };
+
+            return new JsonResult(new { Status = "success", Message = cartDTO });
+        }
+
+        // POST: api/CartItems/addItem
+        [Route("addItem")]
+        [HttpPost]
+        public async Task<ActionResult<CartItems>> addItemToCart(int inUserID, int inProductOptionID, int inQuantity)
+        {
+            Cart cart = await db.Cart.Where(c => c.UserID.Equals(inUserID)).FirstOrDefaultAsync();
+
+            Users user = await db.Users.FindAsync(inUserID);
+
+            if (user == null)
+            {
+                return new JsonResult(new { Status = "error", Message = "User Not Found" });
             }
 
-            _context.Entry(cartItems).State = EntityState.Modified;
+            if (cart == null)
+            { 
+                cart = new Cart
+                {
+                    User = user,
+                    UserID = user.Id,
+                    created_at = DateTime.Now,
+                    updated_at = DateTime.Now
+                };
+
+                db.Cart.Add(cart);
+                try
+                {
+                    await db.SaveChangesAsync();
+                }
+                catch (Exception e)
+                {
+                    return new JsonResult(new { Status = "error", Message = "Error creating Cart" });
+                }
+            }
+            else
+            {
+                cart.updated_at = DateTime.Now;
+
+                db.Cart.Update(cart);
+                try
+                {
+                    await db.SaveChangesAsync();
+                }
+                catch (Exception e)
+                {
+                    return new JsonResult(new { Status = "error", Message = "Error updating Cart" });
+                }
+            }
+
+            ProductOptions prodOpt = await db.ProductOptions.FindAsync(inProductOptionID);
+
+            if (prodOpt == null)
+            {
+                return new JsonResult(new { Status = "error", Message = "No Product Option With The Id: " + inProductOptionID });
+            }
+
+            Products prod = await db.Products.FindAsync(prodOpt.ProductID);
+
+            if (prod == null)
+            {
+                return new JsonResult(new { Status = "error", Message = "No Product With The Id: " + prodOpt.ProductID });
+            }
+
+            prodOpt.Product = prod;
+
+            if (inQuantity < 1)
+            {
+                return new JsonResult(new { Status = "error", Message = "Quantity Can't be less than 1" });
+            }
+
+            CartItems cartItem = new CartItems
+            {
+                Cart = cart,
+                CartID = cart.Id,
+                ProductOption = prodOpt,
+                ProductOptionID = prodOpt.Id,
+                quantity = inQuantity
+            };
+
+            db.CartItems.Add(cartItem);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await db.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!CartItemsExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return new JsonResult(new { Status = "error", Message = "Error adding item to Cart" });
             }
 
-            return NoContent();
-        }
-
-        // POST: api/CartItems
-        [HttpPost]
-        public async Task<ActionResult<CartItems>> PostCartItems(CartItems cartItems)
-        {
-            _context.CartItems.Add(cartItems);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCartItems", new { id = cartItems.Id }, cartItems);
-        }
-
-        // DELETE: api/CartItems/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<CartItems>> DeleteCartItems(int id)
-        {
-            var cartItems = await _context.CartItems.FindAsync(id);
-            if (cartItems == null)
-            {
-                return NotFound();
-            }
-
-            _context.CartItems.Remove(cartItems);
-            await _context.SaveChangesAsync();
-
-            return cartItems;
-        }
-
-        private bool CartItemsExists(int id)
-        {
-            return _context.CartItems.Any(e => e.Id == id);
+            return new JsonResult(new { Status = "success", Message = cartItem });
         }
     }
 }

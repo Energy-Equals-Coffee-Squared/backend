@@ -106,6 +106,33 @@ namespace api.Controllers
             }
         }
 
+        // POST: api/InvoiceItems/updateShipping
+        [Route("updateShipping")]
+        [HttpPost]
+        public async Task<ActionResult<InvoicesDTO>> updateShipping(int inInvoiceID)
+        {
+            Invoices inv = db.Invoices.Find(inInvoiceID);
+
+            if (inv == null)
+            {
+                return new JsonResult(new { Status = "error", Message = "No Product Option With The Id: " + "No Invoice with the Id: " + inInvoiceID });
+            }
+
+            inv.total_paid += inv.shipping_fee;
+
+            db.Invoices.Update(inv);
+            try
+            {
+                db.SaveChanges();
+                return new JsonResult(new { Status = "success", Message = "" });
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(new { Status = "error", Message = "Error when trying to update product max and/or min price" });
+
+            }
+        }
+
         // POST: api/InvoiceItems/addItem
         [Route("addItem")]
         [HttpPost]
@@ -152,6 +179,7 @@ namespace api.Controllers
                 prod_altitude_min = prodOpt.Product.altitude_min,
                 prod_bean_type = prodOpt.Product.bean_type,
                 prod_image_url = prodOpt.Product.image_url,
+                opt_tax_amount = prodOpt.tax_amount,
                 opt_price = prodOpt.price,
                 opt_weight = prodOpt.weight,
                 quantity = inQuantity

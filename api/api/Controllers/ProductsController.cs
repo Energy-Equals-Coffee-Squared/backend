@@ -100,7 +100,7 @@ namespace api.Controllers
                     orderProducts = prods.OrderBy(p => p.min_price);
                     break;
                 case "price_desc":
-                    orderProducts = prods.OrderByDescending(p => p.max_price);
+                    orderProducts = prods.OrderByDescending(p => p.min_price);
                     break;
 
 

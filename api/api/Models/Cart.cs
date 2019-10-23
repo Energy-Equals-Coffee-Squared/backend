@@ -12,12 +12,6 @@ namespace api.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [Column(TypeName = "tinyint")]
-        public bool shipping_fee { get; set; }
-        [Required]
-        [Column(TypeName = "int")]
-        public int total { get; set; }
-        [Required]
         [Column(TypeName = "int")]
         public int UserID { get; set; }
         public Users User { get; set; }
