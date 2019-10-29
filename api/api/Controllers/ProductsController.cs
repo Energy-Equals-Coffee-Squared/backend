@@ -64,7 +64,7 @@ namespace api.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductsDTO>>> GetProducts(String order = "default")
+        public async Task<ActionResult<IEnumerable<ProductsDTO>>> GetProducts(String order = "default", String search = "")
         {
             var prods = db.Products.Select(
                 p => new ProductsDTO {
@@ -84,7 +84,7 @@ namespace api.Controllers
                 }
             );
 
-            var orderProducts = prods;
+             var orderProducts = prods.Where(p => p.name.Contains(search));
 
             switch (order)
             {

@@ -143,7 +143,7 @@ namespace api.Models
                     altitude_max = 9000,
                     altitude_min = 7000,
                     bean_type = "Arabic",
-                    image_url = "404.jpg",
+                    image_url = "1.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -163,7 +163,7 @@ namespace api.Models
                     altitude_max = 2500,
                     altitude_min = 2000,
                     bean_type = "Hierloom",
-                    image_url = "404.jpg",
+                    image_url = "2.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -183,7 +183,7 @@ namespace api.Models
                     altitude_max = 1800,
                     altitude_min = 1600,
                     bean_type = "Arabic",
-                    image_url = "404.jpg",
+                    image_url = "3.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -203,7 +203,7 @@ namespace api.Models
                     altitude_max = 10000,
                     altitude_min = 9500,
                     bean_type = "Blend",
-                    image_url = "404.jpg",
+                    image_url = "4.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -222,7 +222,7 @@ namespace api.Models
                     altitude_max = 9000,
                     altitude_min = 7000,
                     bean_type = "Arabic",
-                    image_url = "404.jpg",
+                    image_url = "5.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -241,7 +241,7 @@ namespace api.Models
                     altitude_max = 1700,
                     altitude_min = 1675,
                     bean_type = "Primarily Caturra & Catuai",
-                    image_url = "404.jpg",
+                    image_url = "6.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -260,7 +260,7 @@ namespace api.Models
                     altitude_max = 1600,
                     altitude_min = 1220,
                     bean_type = "Heirloom",
-                    image_url = "404.jpg",
+                    image_url = "7.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -279,7 +279,7 @@ namespace api.Models
                     altitude_max = 1200,
                     altitude_min = 1100,
                     bean_type = "Finca Idealista",
-                    image_url = "404.jpg",
+                    image_url = "8.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -298,7 +298,7 @@ namespace api.Models
                     altitude_max = 1600,
                     altitude_min = 1420,
                     bean_type = "Catui",
-                    image_url = "404.jpg",
+                    image_url = "9.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -319,7 +319,7 @@ namespace api.Models
                     altitude_max = 9000,
                     altitude_min = 7000,
                     bean_type = "BVurundi",
-                    image_url = "404.jpg",
+                    image_url = "10.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -338,7 +338,7 @@ namespace api.Models
                     altitude_max = 1350,
                     altitude_min = 1000,
                     bean_type = "Cauvery",
-                    image_url = "404.jpg",
+                    image_url = "11.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -358,7 +358,7 @@ namespace api.Models
                     altitude_max = 9000,
                     altitude_min = 7000,
                     bean_type = "Arabic",
-                    image_url = "404.jpg",
+                    image_url = "12.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -377,7 +377,7 @@ namespace api.Models
                     altitude_max = 2000,
                     altitude_min = 1700,
                     bean_type = "Red Bourbon",
-                    image_url = "404.jpg",
+                    image_url = "13.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -397,7 +397,7 @@ namespace api.Models
                     altitude_max = 1200,
                     altitude_min = 1100,
                     bean_type = "Blend",
-                    image_url = "404.jpg",
+                    image_url = "14.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -416,7 +416,7 @@ namespace api.Models
                     altitude_max = 1600,
                     altitude_min = 1550,
                     bean_type = "Catuai",
-                    image_url = "404.jpg",
+                    image_url = "15.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -436,7 +436,7 @@ namespace api.Models
                     altitude_max = 9000,
                     altitude_min = 7000,
                     bean_type = "Blend",
-                    image_url = "404.jpg",
+                    image_url = "16.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -455,7 +455,7 @@ namespace api.Models
                     altitude_max = 9000,
                     altitude_min = 7000,
                     bean_type = "Blend",
-                    image_url = "404.jpg",
+                    image_url = "17.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -474,7 +474,7 @@ namespace api.Models
                     altitude_max = 9000,
                     altitude_min = 7000,
                     bean_type = "Harrar",
-                    image_url = "404.jpg",
+                    image_url = "18.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -493,7 +493,7 @@ namespace api.Models
                     altitude_max = 9000,
                     altitude_min = 7000,
                     bean_type = "Arabica",
-                    image_url = "404.jpg",
+                    image_url = "19.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -512,7 +512,7 @@ namespace api.Models
                     altitude_max = 10000,
                     altitude_min = 9000,
                     bean_type = "Catuai",
-                    image_url = "404.jpg",
+                    image_url = "20.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false
@@ -530,7 +530,7 @@ namespace api.Models
                     altitude_max = 5000,
                     altitude_min = 3500,
                     bean_type = "Arabic",
-                    image_url = "404.jpg",
+                    image_url = "21.png",
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now,
                     isDeleted = false

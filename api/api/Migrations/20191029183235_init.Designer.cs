@@ -10,14 +10,14 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(CoffeeContext))]
-    [Migration("20191023000432_init")]
+    [Migration("20191029183235_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -32,12 +32,6 @@ namespace api.Migrations
 
                     b.Property<DateTime>("created_at")
                         .HasColumnType("datetime");
-
-                    b.Property<byte>("shipping_fee")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int>("total")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("updated_at")
                         .HasColumnType("datetime");
@@ -61,51 +55,14 @@ namespace api.Migrations
                     b.Property<int>("ProductOptionID")
                         .HasColumnType("int");
 
-                    b.Property<int>("opt_price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("opt_tax_amount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("opt_weight")
-                        .HasColumnType("int");
-
-                    b.Property<int>("prod_altitude_max")
-                        .HasColumnType("int");
-
-                    b.Property<int>("prod_altitude_min")
-                        .HasColumnType("int");
-
-                    b.Property<string>("prod_bean_type")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("prod_desc")
-                        .IsRequired()
-                        .HasColumnType("varchar(1000)");
-
-                    b.Property<string>("prod_image_url")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("prod_name")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("prod_region")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("prod_roast")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
                     b.Property<int>("quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CartID");
+
+                    b.HasIndex("ProductOptionID");
 
                     b.ToTable("CartItems");
                 });
@@ -1127,819 +1084,819 @@ namespace api.Migrations
                         {
                             Id = 1,
                             ProductID = 1,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(7907),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 915, DateTimeKind.Local).AddTicks(5994),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 8000,
                             quantity = 15,
                             tax_amount = 1200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(8583),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 915, DateTimeKind.Local).AddTicks(6928),
                             weight = 250
                         },
                         new
                         {
                             Id = 2,
                             ProductID = 1,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1066),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(170),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 15000,
                             quantity = 15,
                             tax_amount = 2250,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1073),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(180),
                             weight = 500
                         },
                         new
                         {
                             Id = 3,
                             ProductID = 1,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1088),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(207),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 28000,
                             quantity = 15,
                             tax_amount = 4200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1089),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(208),
                             weight = 1000
                         },
                         new
                         {
                             Id = 4,
                             ProductID = 2,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1090),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(212),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 9000,
                             quantity = 10,
                             tax_amount = 1350,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1091),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(213),
                             weight = 250
                         },
                         new
                         {
                             Id = 5,
                             ProductID = 2,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1093),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(215),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 15000,
                             quantity = 11,
                             tax_amount = 2250,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1094),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(217),
                             weight = 500
                         },
                         new
                         {
                             Id = 6,
                             ProductID = 2,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1096),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(219),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 31000,
                             quantity = 12,
                             tax_amount = 4650,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1096),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(220),
                             weight = 1000
                         },
                         new
                         {
                             Id = 7,
                             ProductID = 3,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1098),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(222),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 10000,
                             quantity = 13,
                             tax_amount = 1500,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1098),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(223),
                             weight = 250
                         },
                         new
                         {
                             Id = 8,
                             ProductID = 3,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1100),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(226),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 22000,
                             quantity = 25,
                             tax_amount = 3300,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1101),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(227),
                             weight = 500
                         },
                         new
                         {
                             Id = 9,
                             ProductID = 3,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1102),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(231),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 32000,
                             quantity = 5,
                             tax_amount = 4800,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1103),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(232),
                             weight = 1000
                         },
                         new
                         {
                             Id = 10,
                             ProductID = 4,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1104),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(234),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 6000,
                             quantity = 13,
                             tax_amount = 900,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1105),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(235),
                             weight = 250
                         },
                         new
                         {
                             Id = 11,
                             ProductID = 4,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1106),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(238),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 14000,
                             quantity = 35,
                             tax_amount = 2100,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1107),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(239),
                             weight = 500
                         },
                         new
                         {
                             Id = 12,
                             ProductID = 4,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1108),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(241),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 25000,
                             quantity = 19,
                             tax_amount = 3750,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1109),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(242),
                             weight = 1000
                         },
                         new
                         {
                             Id = 13,
                             ProductID = 5,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1111),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(244),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 8000,
                             quantity = 16,
                             tax_amount = 1200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1111),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(246),
                             weight = 250
                         },
                         new
                         {
                             Id = 14,
                             ProductID = 5,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1113),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(248),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 12000,
                             quantity = 17,
                             tax_amount = 1800,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1113),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(249),
                             weight = 500
                         },
                         new
                         {
                             Id = 15,
                             ProductID = 5,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1115),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(251),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 16000,
                             quantity = 11,
                             tax_amount = 2400,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1115),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(252),
                             weight = 1000
                         },
                         new
                         {
                             Id = 16,
                             ProductID = 6,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1117),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(254),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 15000,
                             quantity = 33,
                             tax_amount = 2250,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1118),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(256),
                             weight = 250
                         },
                         new
                         {
                             Id = 17,
                             ProductID = 6,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1119),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(258),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 20000,
                             quantity = 25,
                             tax_amount = 3000,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1120),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(259),
                             weight = 500
                         },
                         new
                         {
                             Id = 18,
                             ProductID = 6,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1122),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(261),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 35000,
                             quantity = 19,
                             tax_amount = 5250,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1123),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(263),
                             weight = 1000
                         },
                         new
                         {
                             Id = 19,
                             ProductID = 7,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1125),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(265),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 10000,
                             quantity = 16,
                             tax_amount = 1500,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1125),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(266),
                             weight = 250
                         },
                         new
                         {
                             Id = 20,
                             ProductID = 7,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1127),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(268),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 19000,
                             quantity = 15,
                             tax_amount = 2850,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1127),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(269),
                             weight = 500
                         },
                         new
                         {
                             Id = 21,
                             ProductID = 7,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1129),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(272),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 29000,
                             quantity = 17,
                             tax_amount = 4350,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1129),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(273),
                             weight = 1000
                         },
                         new
                         {
                             Id = 22,
                             ProductID = 8,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1131),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(276),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 10000,
                             quantity = 17,
                             tax_amount = 1500,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1132),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(277),
                             weight = 250
                         },
                         new
                         {
                             Id = 23,
                             ProductID = 8,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1133),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(280),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 13500,
                             quantity = 13,
                             tax_amount = 2025,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1134),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(281),
                             weight = 500
                         },
                         new
                         {
                             Id = 24,
                             ProductID = 8,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1135),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(283),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 17000,
                             quantity = 25,
                             tax_amount = 2550,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1136),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(284),
                             weight = 1000
                         },
                         new
                         {
                             Id = 25,
                             ProductID = 9,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1137),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(287),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 18000,
                             quantity = 35,
                             tax_amount = 2700,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1138),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(288),
                             weight = 250
                         },
                         new
                         {
                             Id = 26,
                             ProductID = 9,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1140),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(290),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 26000,
                             quantity = 11,
                             tax_amount = 3900,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1141),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(291),
                             weight = 500
                         },
                         new
                         {
                             Id = 27,
                             ProductID = 9,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1142),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(293),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 32000,
                             quantity = 9,
                             tax_amount = 4800,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1143),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(294),
                             weight = 1000
                         },
                         new
                         {
                             Id = 28,
                             ProductID = 10,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1144),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(297),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 10000,
                             quantity = 15,
                             tax_amount = 1500,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1145),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(298),
                             weight = 250
                         },
                         new
                         {
                             Id = 29,
                             ProductID = 10,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1146),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(300),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 19000,
                             quantity = 21,
                             tax_amount = 2850,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1147),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(302),
                             weight = 500
                         },
                         new
                         {
                             Id = 30,
                             ProductID = 10,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1149),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(304),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 36000,
                             quantity = 11,
                             tax_amount = 5400,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1149),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(305),
                             weight = 1000
                         },
                         new
                         {
                             Id = 31,
                             ProductID = 11,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1151),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(307),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 8000,
                             quantity = 7,
                             tax_amount = 1200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1152),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(309),
                             weight = 250
                         },
                         new
                         {
                             Id = 32,
                             ProductID = 11,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1154),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(311),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 15000,
                             quantity = 13,
                             tax_amount = 2250,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1154),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(312),
                             weight = 500
                         },
                         new
                         {
                             Id = 33,
                             ProductID = 11,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1156),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(314),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 28000,
                             quantity = 33,
                             tax_amount = 4200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1157),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(315),
                             weight = 1000
                         },
                         new
                         {
                             Id = 34,
                             ProductID = 12,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1158),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(318),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 8000,
                             quantity = 6,
                             tax_amount = 1200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1159),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(319),
                             weight = 250
                         },
                         new
                         {
                             Id = 35,
                             ProductID = 12,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1160),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(322),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 15000,
                             quantity = 7,
                             tax_amount = 2250,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1161),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(323),
                             weight = 500
                         },
                         new
                         {
                             Id = 36,
                             ProductID = 12,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1163),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(326),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 28000,
                             quantity = 8,
                             tax_amount = 4200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1163),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(327),
                             weight = 1000
                         },
                         new
                         {
                             Id = 37,
                             ProductID = 13,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1165),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(329),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 8000,
                             quantity = 22,
                             tax_amount = 1200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1165),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(330),
                             weight = 250
                         },
                         new
                         {
                             Id = 38,
                             ProductID = 13,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1167),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(333),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 15000,
                             quantity = 11,
                             tax_amount = 2250,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1167),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(334),
                             weight = 500
                         },
                         new
                         {
                             Id = 39,
                             ProductID = 13,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1169),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(336),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 28000,
                             quantity = 44,
                             tax_amount = 4200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1170),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(337),
                             weight = 1000
                         },
                         new
                         {
                             Id = 40,
                             ProductID = 14,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1171),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(339),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 12500,
                             quantity = 15,
                             tax_amount = 1875,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1172),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(341),
                             weight = 250
                         },
                         new
                         {
                             Id = 41,
                             ProductID = 14,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1173),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(343),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 18000,
                             quantity = 16,
                             tax_amount = 2700,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1174),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(344),
                             weight = 500
                         },
                         new
                         {
                             Id = 42,
                             ProductID = 14,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1175),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(346),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 26000,
                             quantity = 17,
                             tax_amount = 3900,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1176),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(347),
                             weight = 1000
                         },
                         new
                         {
                             Id = 43,
                             ProductID = 15,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1177),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(349),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 16000,
                             quantity = 12,
                             tax_amount = 2400,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1178),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(350),
                             weight = 250
                         },
                         new
                         {
                             Id = 44,
                             ProductID = 15,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1180),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(353),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 32000,
                             quantity = 22,
                             tax_amount = 4800,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1180),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(354),
                             weight = 500
                         },
                         new
                         {
                             Id = 45,
                             ProductID = 15,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1183),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(356),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 60000,
                             quantity = 26,
                             tax_amount = 9000,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1184),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(357),
                             weight = 1000
                         },
                         new
                         {
                             Id = 46,
                             ProductID = 16,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1186),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(359),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 12500,
                             quantity = 4,
                             tax_amount = 1875,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1186),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(360),
                             weight = 250
                         },
                         new
                         {
                             Id = 47,
                             ProductID = 16,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1188),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(363),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 17000,
                             quantity = 22,
                             tax_amount = 2550,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1189),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(364),
                             weight = 500
                         },
                         new
                         {
                             Id = 48,
                             ProductID = 16,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1190),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(367),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 30000,
                             quantity = 9,
                             tax_amount = 4500,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1191),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(369),
                             weight = 1000
                         },
                         new
                         {
                             Id = 49,
                             ProductID = 17,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1192),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(371),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 22000,
                             quantity = 21,
                             tax_amount = 3300,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1193),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(372),
                             weight = 250
                         },
                         new
                         {
                             Id = 50,
                             ProductID = 17,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1194),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(374),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 31000,
                             quantity = 11,
                             tax_amount = 4650,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1195),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(375),
                             weight = 500
                         },
                         new
                         {
                             Id = 51,
                             ProductID = 17,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1197),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(377),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 45500,
                             quantity = 11,
                             tax_amount = 6825,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1197),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(378),
                             weight = 1000
                         },
                         new
                         {
                             Id = 52,
                             ProductID = 18,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1199),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(381),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 15100,
                             quantity = 22,
                             tax_amount = 2265,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1199),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(382),
                             weight = 250
                         },
                         new
                         {
                             Id = 53,
                             ProductID = 18,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1201),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(384),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 18000,
                             quantity = 12,
                             tax_amount = 2700,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1202),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(385),
                             weight = 500
                         },
                         new
                         {
                             Id = 54,
                             ProductID = 18,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1203),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(387),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 21200,
                             quantity = 32,
                             tax_amount = 3180,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1204),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(388),
                             weight = 1000
                         },
                         new
                         {
                             Id = 55,
                             ProductID = 19,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1205),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(390),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 32000,
                             quantity = 21,
                             tax_amount = 4800,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1206),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(392),
                             weight = 250
                         },
                         new
                         {
                             Id = 56,
                             ProductID = 19,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1208),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(394),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 40000,
                             quantity = 11,
                             tax_amount = 6000,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1208),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(395),
                             weight = 500
                         },
                         new
                         {
                             Id = 57,
                             ProductID = 19,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1210),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(397),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 50000,
                             quantity = 15,
                             tax_amount = 7500,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1211),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(398),
                             weight = 1000
                         },
                         new
                         {
                             Id = 58,
                             ProductID = 20,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1213),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(400),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 12000,
                             quantity = 44,
                             tax_amount = 1800,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1214),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(401),
                             weight = 250
                         },
                         new
                         {
                             Id = 59,
                             ProductID = 20,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1215),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(404),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 20000,
                             quantity = 15,
                             tax_amount = 3000,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1216),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(405),
                             weight = 500
                         },
                         new
                         {
                             Id = 60,
                             ProductID = 20,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1218),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(407),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 30000,
                             quantity = 21,
                             tax_amount = 4500,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1218),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(408),
                             weight = 1000
                         },
                         new
                         {
                             Id = 61,
                             ProductID = 21,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1220),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(410),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 8000,
                             quantity = 11,
                             tax_amount = 1200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1220),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(412),
                             weight = 250
                         },
                         new
                         {
                             Id = 62,
                             ProductID = 21,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1269),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(414),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 16000,
                             quantity = 1,
                             tax_amount = 2400,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1270),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(415),
                             weight = 500
                         },
                         new
                         {
                             Id = 63,
                             ProductID = 21,
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1272),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(418),
                             isAvailable = (byte)1,
                             isDeleted = (byte)0,
                             price = 28000,
                             quantity = 2,
                             tax_amount = 4200,
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 110, DateTimeKind.Local).AddTicks(1273),
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 916, DateTimeKind.Local).AddTicks(419),
                             weight = 1000
                         });
                 });
@@ -2006,16 +1963,16 @@ namespace api.Migrations
                             altitude_max = 9000,
                             altitude_min = 7000,
                             bean_type = "Arabic",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 108, DateTimeKind.Local).AddTicks(3477),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 912, DateTimeKind.Local).AddTicks(9819),
                             desc = "Ethiopian Limu is from the western escarpments of the Ethiopian highlands. Our single origin is a fully washed, high quality coffee with rich, round flavour and a pronounced sweetness on the palate.",
-                            image_url = "404.jpg",
+                            image_url = "1.png",
                             isDeleted = (byte)0,
                             max_price = 28000,
                             min_price = 8000,
                             name = "ETHIOPIAN LIMU",
                             region = "Ethiopia",
                             roast = "light",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(819)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(5603)
                         },
                         new
                         {
@@ -2023,16 +1980,16 @@ namespace api.Migrations
                             altitude_max = 2500,
                             altitude_min = 2000,
                             bean_type = "Hierloom",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2231),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7928),
                             desc = "Guji is one of those regions of Ethiopia that have garnered much more attention in recent years, competing with the classically popular areas like Yirgacheffe & Limu.",
-                            image_url = "404.jpg",
+                            image_url = "2.png",
                             isDeleted = (byte)0,
                             max_price = 31000,
                             min_price = 9000,
                             name = "Truth. - Ethiopia Guji",
                             region = "Ethiopia",
                             roast = "Medium",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2238)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7939)
                         },
                         new
                         {
@@ -2040,16 +1997,16 @@ namespace api.Migrations
                             altitude_max = 1800,
                             altitude_min = 1600,
                             bean_type = "Arabic",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2248),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7957),
                             desc = "Truth seems to have had a bit of a love affair with Burundian coffee in the last few years, one from which we have all benefited. They've had a streak of delicious examples of the up and coming coffee producing country's very best exports that we have thoroughly enjoyed.",
-                            image_url = "404.jpg",
+                            image_url = "3.png",
                             isDeleted = (byte)0,
                             max_price = 32000,
                             min_price = 10000,
                             name = "Truth. - Burundi",
                             region = "Burundi",
                             roast = "light",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2249)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7958)
                         },
                         new
                         {
@@ -2057,16 +2014,16 @@ namespace api.Migrations
                             altitude_max = 10000,
                             altitude_min = 9500,
                             bean_type = "Blend",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2251),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7961),
                             desc = "Bean There's Blend 44 combines their very popular Ethiopia Sidamo, and one of our favourites, their Burundi Musema & Nyarurama. The marriage of these two wonderful coffees yields everything you might want in a bold yet balanced coffee, suitable for manual brewing or espresso.",
-                            image_url = "404.jpg",
+                            image_url = "4.png",
                             isDeleted = (byte)0,
                             max_price = 25000,
                             min_price = 6000,
                             name = "Bean There - Blend 44",
                             region = "Ethiopia",
                             roast = "Light",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2251)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7963)
                         },
                         new
                         {
@@ -2074,16 +2031,16 @@ namespace api.Migrations
                             altitude_max = 9000,
                             altitude_min = 7000,
                             bean_type = "Arabic",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2253),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7965),
                             desc = "Villa Rosario is a colony in the Caranavi area of Yungus. The colony is located between 1550 and 1650 masl and is surrounded by jungle and small coffee farms.",
-                            image_url = "404.jpg",
+                            image_url = "5.png",
                             isDeleted = (byte)0,
                             max_price = 16000,
                             min_price = 8000,
                             name = "Legado - Bolivia Villa Rosario Organic",
                             region = "Bolivia",
                             roast = "Dark",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2254)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7967)
                         },
                         new
                         {
@@ -2091,16 +2048,16 @@ namespace api.Migrations
                             altitude_max = 1700,
                             altitude_min = 1675,
                             bean_type = "Primarily Caturra & Catuai",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2258),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7970),
                             desc = "Origin Coffee Roasting's decafs are surprisingly delicious. They select top quality single origin beans that are decaffeinated using a chemical-free process, to ensure maximum flavour retention and no unpleasant artificial qualities.",
-                            image_url = "404.jpg",
+                            image_url = "6.png",
                             isDeleted = (byte)0,
                             max_price = 35000,
                             min_price = 15000,
                             name = "Origin Coffee Roasting - Guatemala Santa Sofia",
                             region = "Guatamala",
                             roast = "light",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2259)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7971)
                         },
                         new
                         {
@@ -2108,16 +2065,16 @@ namespace api.Migrations
                             altitude_max = 1600,
                             altitude_min = 1220,
                             bean_type = "Heirloom",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2261),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7974),
                             desc = "This Costa Rican single origin coffee from The Portland Project has everything that you might look for from that part of the coffee growing world. Its acidity is very discrete and body is full and satisfying.",
-                            image_url = "404.jpg",
+                            image_url = "7.png",
                             isDeleted = (byte)0,
                             max_price = 29000,
                             min_price = 10000,
                             name = "Portland Project - Costa Rica Trojas",
                             region = "Costa Rica",
                             roast = "Dark",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2262)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7975)
                         },
                         new
                         {
@@ -2125,16 +2082,16 @@ namespace api.Migrations
                             altitude_max = 1200,
                             altitude_min = 1100,
                             bean_type = "Finca Idealista",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2264),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7979),
                             desc = "This is a spectacularly and deliciously unusual coffee. Its flavours are quite different from anything we've tasted before, and this may be in part due to the experimental processing method employed.",
-                            image_url = "404.jpg",
+                            image_url = "8.png",
                             isDeleted = (byte)0,
                             max_price = 17000,
                             min_price = 10000,
                             name = "Quaffee - Nicaragua Finca Idealista Anaerobic Nanolot",
                             region = "Nicaragua",
                             roast = "Medium",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2264)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(7980)
                         },
                         new
                         {
@@ -2142,16 +2099,16 @@ namespace api.Migrations
                             altitude_max = 1600,
                             altitude_min = 1420,
                             bean_type = "Catui",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2266),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8076),
                             desc = "While Central American coffee is generally well-respected, Honduras is definitely one of the lesser known producers in the region, at least here in South Africa. Equally many of the best Central American coffees are quite reserved in their flavour profiles.",
-                            image_url = "404.jpg",
+                            image_url = "9.png",
                             isDeleted = (byte)0,
                             max_price = 32000,
                             min_price = 18000,
                             name = "Rosetta Roastery - Honduras San Franscisco Natural",
                             region = "Honduras",
                             roast = "Dark",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2267)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8077)
                         },
                         new
                         {
@@ -2159,16 +2116,16 @@ namespace api.Migrations
                             altitude_max = 9000,
                             altitude_min = 7000,
                             bean_type = "BVurundi",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2269),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8080),
                             desc = "Bourbon type varietal.Cup profiles can be dynamic and bright, with red fruits, berry or citrus.Medium body and rounded mouth feel with a lingering finish.It’s no secret that Burundi has the potential to produce great coffee.",
-                            image_url = "404.jpg",
+                            image_url = "10.png",
                             isDeleted = (byte)0,
                             max_price = 36000,
                             min_price = 10000,
                             name = "BURUNDI KIBIRA",
                             region = "India",
                             roast = "light",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2269)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8082)
                         },
                         new
                         {
@@ -2176,16 +2133,16 @@ namespace api.Migrations
                             altitude_max = 1350,
                             altitude_min = 1000,
                             bean_type = "Cauvery",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2272),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8084),
                             desc = "The coffee comes from the Allana estate in the former state of Mysore in India, now part of Karnataka. While the geographic area no longer bears the name, the coffees from that area are still referred to as Indian Mysore.",
-                            image_url = "404.jpg",
+                            image_url = "11.png",
                             isDeleted = (byte)0,
                             max_price = 28000,
                             min_price = 8000,
                             name = "Truth. - India Single Origin",
                             region = "India",
                             roast = "Medium",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2272)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8085)
                         },
                         new
                         {
@@ -2193,16 +2150,16 @@ namespace api.Migrations
                             altitude_max = 9000,
                             altitude_min = 7000,
                             bean_type = "Arabic",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2274),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8088),
                             desc = "Ethiopian Limu is from the western escarpments of the Ethiopian highlands. Our single origin is a fully washed, high quality coffee with rich, round flavour and a pronounced sweetness on the palate.",
-                            image_url = "404.jpg",
+                            image_url = "12.png",
                             isDeleted = (byte)0,
                             max_price = 28000,
                             min_price = 8000,
                             name = "ETHIOPIAN LIMU",
                             region = "Ethiopia",
                             roast = "light",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2275)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8089)
                         },
                         new
                         {
@@ -2210,16 +2167,16 @@ namespace api.Migrations
                             altitude_max = 2000,
                             altitude_min = 1700,
                             bean_type = "Red Bourbon",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2277),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8092),
                             desc = "Rwanda Musasa is a returning favourite from Origin Coffee Roasting. Highly celebrated, the Musasa Dukunde Kawa Cooperative is known all over the world for its top quality Red Bourbon beans.",
-                            image_url = "404.jpg",
+                            image_url = "13.png",
                             isDeleted = (byte)0,
                             max_price = 28000,
                             min_price = 8000,
                             name = "Origin Coffee Roasting - Rwanda Musasa Ruli",
                             region = "Ruli",
                             roast = "light",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2277)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8093)
                         },
                         new
                         {
@@ -2227,16 +2184,16 @@ namespace api.Migrations
                             altitude_max = 1200,
                             altitude_min = 1100,
                             bean_type = "Blend",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2279),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8096),
                             desc = "This blend was concocted early one morning when there just wasn't enough of one of the components, and a certain CCTeam member thought, 'what the heck ?'  And so, a blend was born, and it tasted like fruit salad in a cup. It kind of makes sense in the end if you think about it.",
-                            image_url = "404.jpg",
+                            image_url = "14.png",
                             isDeleted = (byte)0,
                             max_price = 26000,
                             min_price = 12500,
                             name = "Fruit Salad Cape Coffee Blend",
                             region = "South Afica",
                             roast = "Medium",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2280)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8098)
                         },
                         new
                         {
@@ -2244,16 +2201,16 @@ namespace api.Migrations
                             altitude_max = 1600,
                             altitude_min = 1550,
                             bean_type = "Catuai",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2282),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8101),
                             desc = "While Central American coffee is generally well-respected, Honduras is definitely one of the lesser known producers in the region, at least here in South Africa. Equally many of the best Central American coffees are quite reserved in their flavour profiles.",
-                            image_url = "404.jpg",
+                            image_url = "15.png",
                             isDeleted = (byte)0,
                             max_price = 60000,
                             min_price = 16000,
                             name = "Rosetta Roastery - Honduras San Franscisco Natural",
                             region = "Marcala",
                             roast = "Dark",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2283)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8102)
                         },
                         new
                         {
@@ -2261,16 +2218,16 @@ namespace api.Migrations
                             altitude_max = 9000,
                             altitude_min = 7000,
                             bean_type = "Blend",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2285),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8105),
                             desc = "häzz coffee is a rich and subtle, truly modern blend of South American and African origin, suitable for any palate.  It offers an exceptionally wide range of aromas, accompanied by a bold but round and smooth body.In 2012, it won a Gold Medal at the annual International Coffee Tasting in Italy.",
-                            image_url = "404.jpg",
+                            image_url = "16.png",
                             isDeleted = (byte)0,
                             max_price = 30000,
                             min_price = 12500,
                             name = "hazz blend - coffee for heroes",
                             region = "South America and Africa",
                             roast = "light",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2286)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8106)
                         },
                         new
                         {
@@ -2278,16 +2235,16 @@ namespace api.Migrations
                             altitude_max = 9000,
                             altitude_min = 7000,
                             bean_type = "Blend",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2288),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8109),
                             desc = "Tribe Coffee's Espresso Blend has quickly earned them a reputation in and around Cape Town. Full-bodied and well-developed, it makes great milk & espresso-based drinks which is why you'll find it in many restaurants and cafés in the Mother City!",
-                            image_url = "404.jpg",
+                            image_url = "17.png",
                             isDeleted = (byte)0,
                             max_price = 45500,
                             min_price = 22000,
                             name = "Tribe Coffee - Espresso Blend",
                             region = "SouthAfrica",
                             roast = "Dark",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2288)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8110)
                         },
                         new
                         {
@@ -2295,16 +2252,16 @@ namespace api.Migrations
                             altitude_max = 9000,
                             altitude_min = 7000,
                             bean_type = "Harrar",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2290),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8114),
                             desc = "Heavy-bodied, spicy and fragrant, Ethiopian Harrar coffee is a wild and exotic dry processed (natural) Arabica coffee that is grown on small farms in the Oromia region (formerly Harrar) in southern Ethiopia at elevations between 1,400 meters and 2,000 meters.",
-                            image_url = "404.jpg",
+                            image_url = "18.png",
                             isDeleted = (byte)0,
                             max_price = 21200,
                             min_price = 15100,
                             name = "ETHIOPIAN HARRAR",
                             region = "Ethiopia",
                             roast = "Medium",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2291)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8115)
                         },
                         new
                         {
@@ -2312,16 +2269,16 @@ namespace api.Migrations
                             altitude_max = 9000,
                             altitude_min = 7000,
                             bean_type = "Arabica",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2293),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8118),
                             desc = "A full bodied, sweet with fruity after taste. We roast this coffee medium-dark to maintain the complex flavours, a coffee that will place a smile on any connoisseurs face.",
-                            image_url = "404.jpg",
+                            image_url = "19.png",
                             isDeleted = (byte)0,
                             max_price = 50000,
                             min_price = 32000,
                             name = "BRU Etheopia",
                             region = "Ethiopia",
                             roast = "Medium",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2293)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8119)
                         },
                         new
                         {
@@ -2329,16 +2286,16 @@ namespace api.Migrations
                             altitude_max = 10000,
                             altitude_min = 9000,
                             bean_type = "Catuai",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2296),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8122),
                             desc = "A filter grind perfect for plungers, pour overs and more. We've selected 5 varieties of coffee beans for our premium Alpha coffee blend. Rich fruited aromas with a hint of spice. Stoned fruit, nuts and apricot. Balanced citrus and acidity",
-                            image_url = "404.jpg",
+                            image_url = "20.png",
                             isDeleted = (byte)0,
                             max_price = 30000,
                             min_price = 12000,
                             name = "Coffee Lab Alpha",
                             region = "South Africa",
                             roast = "Dark",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2296)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8124)
                         },
                         new
                         {
@@ -2346,16 +2303,16 @@ namespace api.Migrations
                             altitude_max = 5000,
                             altitude_min = 3500,
                             bean_type = "Arabic",
-                            created_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2298),
+                            created_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8126),
                             desc = "Turkish Coffee ground to the finest Powder with a touch of elachi spice for that exotic flavour.",
-                            image_url = "404.jpg",
+                            image_url = "21.png",
                             isDeleted = (byte)0,
                             max_price = 28000,
                             min_price = 8000,
                             name = "Titanium Coffee Turkish",
                             region = "Turkish",
                             roast = "Dark",
-                            updated_at = new DateTime(2019, 10, 23, 2, 4, 32, 109, DateTimeKind.Local).AddTicks(2299)
+                            updated_at = new DateTime(2019, 10, 29, 20, 32, 34, 914, DateTimeKind.Local).AddTicks(8128)
                         });
                 });
 
@@ -2514,6 +2471,11 @@ namespace api.Migrations
                     b.HasOne("api.Models.Cart", "Cart")
                         .WithMany()
                         .HasForeignKey("CartID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("api.Models.ProductOptions", "ProductOption")
+                        .WithMany()
+                        .HasForeignKey("ProductOptionID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

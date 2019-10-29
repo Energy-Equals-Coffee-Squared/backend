@@ -23,14 +23,22 @@ namespace api.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Users>>> GetUsers(string search = "")
         {
-            return await db.Users.Where(u => u.isDelted.Equals(false)).ToListAsync();
+            if (search == "")
+            {
+                return await db.Users.Where(u => u.isDelted.Equals(false)).ToListAsync();
+            }
+            else
+            {
+                return await db.Users.Where(u => u.isDelted.Equals(false) && (u.username.Contains(search) || u.last_name.Contains(search) || u.first_name.Contains(search) || u.email.Contains(search))).ToListAsync();
+
+            }
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetUsers(int id)
+        public async Task<ActionResult<Users>> GetUsers(int id, string search)
         {
             var users = await db.Users.FindAsync(id);
 
@@ -41,7 +49,29 @@ namespace api.Controllers
 
             return users;
         }
+        public async Task<IEnumerable<UsersDTO>> GetSearchUser(string search = "")
+        {
+            var users = db.Users.Select(
+                u => new UsersDTO {
+                    Id = u.Id,
+                    username =u.username,
+                    email = u.email,
+                    first_name = u.first_name,
+                    last_name = u.last_name,
+                    contact_number = u.contact_number,
+                    created_at = u.created_at,
+                    updated_at = u.updated_at,
+                    isAdmin = u.isAdmin,
+                    isDeleted = u.isDelted,
+                    isActive = u.isActive
+                }
+             );
+            var searchUsers = users.Where(u => u.username.Contains(search)||u.last_name.Contains(search)||u.first_name.Contains(search)||u.email.Contains(search));
 
+            var listUsers = searchUsers.ToListAsync();
+
+            return await listUsers;
+        }
         // POST: api/Users/Login
         [Route("Login")]
         [HttpPost]
