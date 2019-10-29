@@ -25,7 +25,7 @@ namespace api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers(string search = "")
         {
-            if (search == "")
+            if (search == ""||search == null|| search == string.Empty)
             {
                 return await db.Users.Where(u => u.isDelted.Equals(false)).ToListAsync();
             }

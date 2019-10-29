@@ -83,8 +83,16 @@ namespace api.Controllers
                     image_url = p.image_url
                 }
             );
-
-             var orderProducts = prods.Where(p => p.name.Contains(search));
+            var orderProducts = prods;
+            if (search == "" || search == null || search == string.Empty)
+            {
+                 orderProducts = prods;
+            }
+            else
+            {
+                 orderProducts = prods.Where(p => p.name.Contains(search));
+            }
+               
 
             switch (order)
             {
@@ -218,6 +226,8 @@ namespace api.Controllers
 
             prod.name = inName;
             prod.desc = inDesc;
+            prod.max_price = 0;
+            prod.min_price = 0;
             prod.region = inRegion;
             prod.roast = inRoast;
             prod.altitude_max = inAltitude_max;
@@ -260,108 +270,9 @@ namespace api.Controllers
         }
 
 
-        [Route("DeleteProduct")]
-        [HttpPost]
-        public async Task<ActionResult<ProductsDTO>> deleteProduct(
-            int inId, string inName, string inDesc,
-            string inRegion, string inRoast,
-            int inAltitude_max, int inAltitude_min,
-            string inBean_type, string inImage_url
-        )
-        {
-            Products prod = await db.Products.FindAsync(inId);
-
-            prod.name = inName;
-            prod.desc = inDesc;
-            prod.region = inRegion;
-            prod.roast = inRoast;
-            prod.altitude_max = inAltitude_max;
-            prod.altitude_min = inAltitude_min;
-            prod.bean_type = inBean_type;
-            prod.image_url = inImage_url;
-            prod.created_at = DateTime.Now;
-            prod.updated_at = DateTime.Now;
-            prod.isDeleted = true;
-
-            db.Products.Update(prod);
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                return ValidationProblem();
-            }
-
-            ProductsDTO prodDTO = new ProductsDTO
-            {
-                Id = prod.Id,
-                name = prod.name,
-                bean_type = prod.bean_type,
-                altitude_max = prod.altitude_max,
-                altitude_min = prod.altitude_min,
-                created_at = prod.created_at,
-                desc = prod.desc,
-                image_url = prod.image_url,
-                max_price = prod.max_price,
-                min_price = prod.min_price,
-                region = prod.region,
-                roast = prod.roast,
-                updated_at = prod.updated_at,
-                productOptions = null
-            };
-
-            return prodDTO;
-        }
-
-        [Route("addProduct")]
-        [HttpPost]
-        public async Task<ActionResult<Products>> AddProduct(
-            int inId, string inName, string inDesc,
-            string inRegion, string inRoast,
-            int inAltitude_max, int inAltitude_min,
-            string inBean_type, string inImage_url
-        )
-        {
-            Products prod = new Products
-            {
-
-                name = inName,
-                desc = inDesc,
-                region = inRegion,
-                roast = inRoast,
-                altitude_max = inAltitude_max,
-                altitude_min = inAltitude_min,
-                bean_type = inBean_type,
-                image_url = inImage_url,
-                created_at = DateTime.Now,
-                updated_at = DateTime.Now,
-                isDeleted = true,
-            };
-
-            db.Products.Add(prod);
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                return ValidationProblem();
-            }
-
-            ProductsDTO prodDTO = new ProductsDTO
-            {
-
-            };
-
-            return prod;
-        }
-
         private bool ProductsExists(int id)
         {
             return db.Products.Any(e => e.Id == id);
         }
-
-
     }
 }
