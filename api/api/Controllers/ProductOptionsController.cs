@@ -64,6 +64,9 @@ namespace api.Controllers
             }
         }
 
+
+       
+
         // POST: api/ProductOptions
         [HttpPost]
         public async Task<ActionResult<ProductOptionsDTO>> PostProductOptions(
@@ -120,6 +123,47 @@ namespace api.Controllers
         private bool ProductOptionsExists(int id)
         {
             return db.ProductOptions.Any(e => e.Id == id);
+        }
+
+        [Route("AddProdOpt")]
+        [HttpPost]
+        public async Task<ActionResult<ProductOptions>> AddProductOp(
+           int inPrice, int inTax,
+           int inWeight, int intQuantity,
+           bool inAvailable, bool inDeleted,
+           int inProductID
+)
+        {
+            ProductOptions prodOpt = new ProductOptions
+            {
+
+                created_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                isAvailable = inAvailable,
+                isDeleted = inDeleted,
+                price = inPrice,
+                tax_amount = inTax,
+                ProductID = inProductID,
+                quantity = intQuantity,
+                weight = inWeight,
+            };
+
+            db.ProductOptions.Add(prodOpt);
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                return ValidationProblem();
+            }
+            // Don't fucking know ! 
+            ProductOptionsDTO prodDTO = new ProductOptionsDTO
+            {
+               
+            };
+
+            return prodOpt;
         }
     }
 }
