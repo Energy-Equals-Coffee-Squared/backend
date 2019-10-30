@@ -64,7 +64,7 @@ namespace api.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductsDTO>>> GetProducts(String order = "default", String search = "")
+        public async Task<ActionResult<IEnumerable<ProductsDTO>>> GetProducts(String order = "default", String search = "", String roast="", String bean="", String region="")
         {
             var prods = db.Products.Select(
                 p => new ProductsDTO {
@@ -83,16 +83,35 @@ namespace api.Controllers
                     image_url = p.image_url
                 }
             );
-            var orderProducts = prods;
+
+            var whereProd = prods;
+
+            if(roast != "" && roast != null && roast != string.Empty && roast != "any")
+            {
+                whereProd = whereProd.Where(p => p.roast.Equals(roast));
+            }
+
+            if (bean != "" && bean != null && bean != string.Empty && bean != "any")
+            {
+                whereProd = whereProd.Where(p => p.bean_type.Equals(bean));
+            }
+
+            if (region != "" && region != null && region != string.Empty && region != "any")
+            {
+                whereProd = whereProd.Where(p => p.region.Equals(region));
+            }
+
+
             if (search == "" || search == null || search == string.Empty)
             {
-                 orderProducts = prods;
+                whereProd = whereProd;
             }
             else
             {
-                 orderProducts = prods.Where(p => p.name.Contains(search));
+                whereProd = whereProd.Where(p => p.name.Contains(search));
             }
-               
+
+            var orderProducts = whereProd;
 
             switch (order)
             {
@@ -267,6 +286,83 @@ namespace api.Controllers
             };
 
             return prodDTO;
+        }
+
+        // GET: api/Products/getRoast
+        [Route("getRoast")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProductsDTO>>> getRoast()
+        {
+            var query = await db.Products.GroupBy(g => g.roast)
+                .Select(g => new
+                {
+                    Roast = g.Key
+                }).ToListAsync();
+
+            return new JsonResult(new { Status = "success", Roasts = query });
+        }
+
+        // GET: api/Products/getBeanType
+        [Route("getBeanType")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProductsDTO>>> getBeanType(String inRoast)
+        {
+            var query = await db.Products.Where(p => p.roast.Equals(inRoast)).GroupBy(g => g.bean_type)
+                .Select(g => new
+                {
+                    bean_type = g.Key
+                }).ToListAsync();
+            if (inRoast.Equals("any"))
+            {
+                query = await db.Products.GroupBy(g => g.bean_type)
+                .Select(g => new
+                {
+                    bean_type = g.Key
+                }).ToListAsync();
+            }
+
+            return new JsonResult(new { Status = "success", BeanTypes = query });
+        }
+
+        // GET: api/Products/getRegion
+        [Route("getRegion")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProductsDTO>>> getRegion(String inRoast, String inBeanType)
+        {
+            var query = await db.Products.Where(p => p.roast.Equals(inRoast) && p.bean_type.Equals(inBeanType)).GroupBy(g => g.region)
+                .Select(g => new
+                {
+                    region = g.Key
+                }).ToListAsync();
+
+            if (inRoast.Equals("any") && !inBeanType.Equals("any"))
+            {
+                query = await db.Products.Where(p => p.bean_type.Equals(inBeanType)).GroupBy(g => g.region)
+                .Select(g => new
+                {
+                    region = g.Key
+                }).ToListAsync();
+            }
+
+            if (!inRoast.Equals("any") && inBeanType.Equals("any"))
+            {
+                query = await db.Products.Where(p => p.roast.Equals(inRoast)).GroupBy(g => g.region)
+                .Select(g => new
+                {
+                    region = g.Key
+                }).ToListAsync();
+            }
+
+            if (inRoast.Equals("any") && inBeanType.Equals("any"))
+            {
+                query = await db.Products.GroupBy(g => g.region)
+                .Select(g => new
+                {
+                    region = g.Key
+                }).ToListAsync();
+            }
+
+            return new JsonResult(new { Status = "success", Regions = query });
         }
 
 
